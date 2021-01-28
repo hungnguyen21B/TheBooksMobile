@@ -8,11 +8,17 @@ export function* startupSaga() {
     // call api
     // set data to reducer
     const { token } = yield select((state) => state.login);
+    const { isSkip } = yield select((state) => state.app);
     http.setAuthorizationHeader(token);
+    //
     if (token) {
       NavigationUtils.startMainContent();
     } else {
-      NavigationUtils.startLoginContent();
+      if (isSkip) {
+        NavigationUtils.startIntroContent();
+      } else {
+        NavigationUtils.startIntroContent();
+      }
     }
   } catch (error) {
     NavigationUtils.startLoginContent();

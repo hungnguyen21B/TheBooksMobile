@@ -141,7 +141,26 @@ class NavigationUtils {
       },
     });
   }
-
+  startIntroContent() {
+    Navigation.setRoot({
+      root: {
+        stack: {
+          children: [
+            {
+              component: {
+                name: 'Introduction',
+                options: {
+                  topBar: {
+                    visible: false,
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
+    });
+  }
   startMainContent() {
     Navigation.setRoot({
       root: {

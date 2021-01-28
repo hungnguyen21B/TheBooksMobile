@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/thebook-appicon';
 import Colors from '../../themes/Colors';
 import ItemText from '../../components/SearchPage/ItemText';
 import Fonts from '../../themes/Fonts';
-import { NavigationUtils } from '../../navigation';
+// import { NavigationUtils } from '../../navigation';
 const SearchPage = (props) => {
   const DATA = [
     {
@@ -46,7 +46,7 @@ const SearchPage = (props) => {
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          NavigationUtils.pop();
+          // NavigationUtils.pop();
         }}
       >
         <Icon name="ic-delete" size={15} color={Colors.blackIcon} />

@@ -5,14 +5,14 @@ import Colors from '../../themes/Colors';
 import Fonts from '../../themes/Fonts';
 import { DATA } from '../../assets/DATA';
 import HomeBookItem from '../../components/HomePage/HomeBookItem';
-import { NavigationUtils } from '../../navigation';
+// import { NavigationUtils } from '../../navigation';
 const ViewAll = (props) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
       <TouchableOpacity
         style={styles.containerBtnBack}
         onPress={() => {
-          NavigationUtils.pop();
+          // NavigationUtils.pop();
         }}
       >
         <Icon name="ic-back" size={13} color={Colors.blackIcon} />

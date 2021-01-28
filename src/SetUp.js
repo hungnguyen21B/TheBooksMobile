@@ -1,5 +1,5 @@
+import React from 'react';
 import { Navigation } from 'react-native-navigation';
-
 import { Alert } from 'react-native';
 import { registerScreens } from './navigation/index';
 import configureStore from './redux/store';
@@ -27,7 +27,7 @@ const App = () => {
       });
     });
   };
-
+  // step 1
   Navigation.events().registerAppLaunchedListener(async () => {
     try {
       await loadIntial();

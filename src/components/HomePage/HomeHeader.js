@@ -3,13 +3,40 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/thebook-appicon';
 import Colors from '../../themes/Colors';
 import Fonts from '../../themes/Fonts';
-const HomeHeader = () => {
+import { RNNDrawer } from 'react-native-navigation-drawer-extension';
+const HomeHeader = (props) => {
   return (
     <View style={styles.container}>
-      <View>
+      <TouchableOpacity style={styles.tboIcon}>
         <Icon size={Fonts.size.s16} name="ic-menu" color={Colors.blackIcon} />
-      </View>
-      <TouchableOpacity style={styles.searchContainer}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.tboIcon}
+        onPress={() => {
+          console.log('on');
+          RNNDrawer.showDrawer({
+            component: {
+              name: 'CustomDrawer',
+              passProps: {
+                animationOpenTime: 300,
+                animationCloseTime: 300,
+                direction: 'left',
+                dismissWhenTouchOutside: true,
+                fadeOpacity: 0.6,
+                drawerScreenWidth: '75%' || 445, // Use relative to screen '%' or absolute
+                drawerScreenHeight: '100%' || 700,
+                style: {
+                  // Styles the drawer container, supports any react-native style
+                  backgroundColor: 'white',
+                },
+                parentComponentId: props.componentId, // Custom prop, will be available in your custom drawer component props
+              },
+            },
+          });
+
+          RNNDrawer.dismissDrawer();
+        }}
+      >
         <Icon size={Fonts.size.s16} name="ic-search" color={Colors.blackIcon} />
       </TouchableOpacity>
     </View>
@@ -27,5 +54,9 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     marginRight: 3,
+  },
+  tboIcon: {
+    width: 16,
+    height: 16,
   },
 });

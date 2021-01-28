@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { NavigationUtils } from '../../navigation';
+import { NavigationUtils } from '../../navigation/Utils';
 import LoginTypes from '../../redux/LoginRedux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 const HomeScreen = (props) => {
