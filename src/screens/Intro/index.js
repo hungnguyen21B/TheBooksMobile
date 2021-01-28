@@ -26,7 +26,7 @@ const Introduction = () => {
       id: 3,
       imgSource: Images.imgIntro3,
       title: 'Tận hưởng cuốn sách',
-      detail: 'Chọn một nơi yêu thích và tận hưởng cuốn sách mà yêu thích thôi nào.',
+      detail: 'Chọn một nơi yêu thích và ttận hưởng cuốn sách mà yêu thích thôi nào.',
       startBtn: true,
     },
   ];

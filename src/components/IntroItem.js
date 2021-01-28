@@ -6,7 +6,7 @@ import { NavigationUtils } from '../navigation';
 const IntroItem = (props) => {
   const dispatch = useDispatch();
   const skipIntroAndShowLogin = () => {
-    console.log('ab');
+    console.log('abb');
     dispatch(markSkipIntro(true));
     NavigationUtils.startLoginContent();
   };

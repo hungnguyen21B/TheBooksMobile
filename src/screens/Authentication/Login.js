@@ -14,6 +14,7 @@ import PasswordItem from '../../components/PasswordItem';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginTypes from '../../redux/LoginRedux/actions';
 import { NavigationUtils } from '../../navigation';
+
 const Login = () => {
   const [] = useState(true);
   const [email, setEmail] = useState('');
