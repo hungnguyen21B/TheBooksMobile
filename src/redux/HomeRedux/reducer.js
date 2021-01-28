@@ -4,15 +4,16 @@ import { HomeTypes } from './actions';
 
 export const INITIAL_STATE = Immutable({
   dataBook: [],
-  errorHome: false,
+  errorHome: '',
 });
+
 export const getBookHomeSuccess = (state, { response }) =>
   state.merge({
-    dataBook: response.data,
+    dataBook: response,
     errorHome: false,
   });
-export const getBookHomeFailure = (state, { error }) =>
-  state.merge({ loadingLogin: false, errorLogin: error, token: null });
+
+export const getBookHomeFailure = (state, { error }) => state.merge({ errorHome: error });
 
 export const userLogout = (state) => state.merge({ token: null, loadingLogin: false });
 const reducer = makeReducerCreator(INITIAL_STATE, {

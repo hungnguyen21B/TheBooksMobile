@@ -8,9 +8,12 @@ import Type from '../../components/HomePage/Type';
 import { Navigation } from 'react-native-navigation';
 import Category from '../../components/FilterPage/Category';
 import ic_launcher from '../../../android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png';
+import { useSelector } from 'react-redux';
 
 const Filter = (props) => {
   const [iconActive, setIconActive] = useState(false);
+  const data = useSelector((state) => state.home.dataBook);
+  console.log(data,'hoang');
 
   const listBooks = [
     {
