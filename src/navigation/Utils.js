@@ -1,3 +1,4 @@
+import React from 'react';
 import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 
@@ -164,16 +165,126 @@ class NavigationUtils {
   startMainContent() {
     Navigation.setRoot({
       root: {
-        stack: {
+        bottomTabs: {
           children: [
             {
-              component: {
-                name: 'Home',
-                options: {
-                  topBar: {
-                    visible: false,
+              stack: {
+                id: 'HomePage',
+                children: [
+                  {
+                    component: {
+                      name: 'HomePage',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/ic-book.png'),
+                        },
+                      },
+                    },
                   },
-                },
+                ],
+              },
+            },
+            {
+              stack: {
+                id: 'Bill',
+                children: [
+                  {
+                    component: {
+                      name: 'Bill',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/files.png'),
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              stack: {
+                id: 'Profile',
+                children: [
+                  {
+                    component: {
+                      name: 'Profile',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/avatar.jpg'),
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              stack: {
+                id: 'Notice',
+                children: [
+                  {
+                    component: {
+                      name: 'Notice',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/bell.png'),
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              stack: {
+                id: 'Library',
+                children: [
+                  {
+                    component: {
+                      name: 'Library',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/home.png'),
+                        },
+                      },
+                    },
+                  },
+                ],
               },
             },
           ],
