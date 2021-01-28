@@ -1,7 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/thebook-appicon';
 import SettingProfileItem from '../../components/SettingProfileItem';
 const SettingProfile = (props) => {
   return (
@@ -19,5 +17,3 @@ const SettingProfile = (props) => {
 };
 
 export default SettingProfile;
-
-const styles = StyleSheet.create({});
