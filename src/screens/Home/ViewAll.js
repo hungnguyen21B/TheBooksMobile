@@ -19,8 +19,8 @@ const ViewAll = (props) => {
       </TouchableOpacity>
       <Text style={styles.txtTitle}>Đọc nhiều</Text>
       <View style={styles.gridContainerItems}>
-        {DATA.map((item) => {
-          return <HomeBookItem item={item} style={styles.cardItem} />;
+        {DATA.map((item, key) => {
+          return <HomeBookItem item={item} key={key} style={styles.cardItem} />;
         })}
       </View>
     </ScrollView>

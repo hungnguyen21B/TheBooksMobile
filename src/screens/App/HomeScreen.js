@@ -93,6 +93,19 @@ const HomeScreen = (props) => {
         style={{
           height: 50,
           width: 100,
+          backgroundColor: 'pink',
+          marginTop: 10,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        onPress={() => NavigationUtils.push({ screen: 'Profile', isTopBarEnable: false })}
+      >
+        <Text>Profile</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          height: 50,
+          width: 100,
           backgroundColor: 'red',
           marginTop: 10,
           justifyContent: 'center',

@@ -11,6 +11,7 @@ import SearchPage from '../screens/Home/SearchPage';
 import Detail from '../screens/Intro/Detail';
 import Introduction from '../screens/Intro/index';
 import ViewAll from '../screens/Home/ViewAll';
+import Profile from '../screens/Authentication/Profile';
 const SCREENS_WITH_REDUX = {
   Login,
   Home,
@@ -20,6 +21,7 @@ const SCREENS_WITH_REDUX = {
   Detail,
   HomePage,
   SearchPage,
+  Profile,
 };
 const SCREENS = {};
 

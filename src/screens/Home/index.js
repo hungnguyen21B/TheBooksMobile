@@ -26,7 +26,7 @@ const HomePage = () => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <HomeHeader />
-      {types.map((type) => {
+      {types.map((type, key) => {
         return <Type title={type.name} key={type.id} />;
       })}
     </ScrollView>
