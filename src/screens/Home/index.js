@@ -1,6 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-
+import { ScrollView, StyleSheet } from 'react-native';
 import HomeHeader from '../../components/HomePage/HomeHeader';
 import Type from '../../components/HomePage/Type';
 

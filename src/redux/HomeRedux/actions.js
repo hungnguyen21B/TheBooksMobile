@@ -7,5 +7,7 @@ export const HomeTypes = makeConstantCreator(
 );
 
 export const getBookHome = () => makeActionCreator(HomeTypes.GET_BOOK_HOME);
-export const getBookHomeSuccess = () => makeActionCreator(HomeTypes.GET_BOOK_HOME_SUCCESS);
-export const getBookHomeFailure = () => makeActionCreator(HomeTypes.GET_BOOK_HOME_FAILURE);
+export const getBookHomeSuccess = (response) =>
+  makeActionCreator(HomeTypes.GET_BOOK_HOME_SUCCESS, { response });
+export const getBookHomeFailure = (error) =>
+  makeActionCreator(HomeTypes.GET_BOOK_HOME_FAILURE, { error });

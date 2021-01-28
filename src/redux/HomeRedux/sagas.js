@@ -5,7 +5,7 @@ export function* getBookHomeSaga() {
   try {
     const response = yield call(getBooksApi);
     const newResponse = {
-      data: response.data,
+      data: response.data.books,
     };
     console.log(newResponse.data);
     // item.authors[0].name
@@ -15,7 +15,7 @@ export function* getBookHomeSaga() {
     // item.overallStarRating
     //item.price
     //item.quantity
-    yield put(getBookHomeSuccess(newResponse.data));
+    yield put(getBookHomeSuccess(newResponse));
   } catch (error) {
     console.log(error);
     yield put(getBookHomeFailure(error));
