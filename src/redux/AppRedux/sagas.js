@@ -1,8 +1,8 @@
-import { takeLatest, select } from 'redux-saga/effects';
-import { AppTypes } from '../AppRedux/actions';
+import { takeLatest, select, put } from 'redux-saga/effects';
+import { AppTypes } from './actions';
 import http from '../../api/http';
 import { NavigationUtils } from '../../navigation';
-
+import { getBookHome } from '../HomeRedux/actions';
 export function* startupSaga() {
   try {
     // call api
@@ -12,15 +12,17 @@ export function* startupSaga() {
     http.setAuthorizationHeader(token);
     //
     if (token) {
+      yield put(getBookHome());
       NavigationUtils.startMainContent();
     } else {
       if (isSkip) {
         NavigationUtils.startIntroContent();
       } else {
-        NavigationUtils.startIntroContent();
+        NavigationUtils.startLoginContent();
       }
     }
   } catch (error) {
+    console.log('error startup: ' + error);
     NavigationUtils.startLoginContent();
   }
 }
