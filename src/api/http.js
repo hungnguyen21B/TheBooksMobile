@@ -1,23 +1,21 @@
 import axios from 'axios';
 
-import Config from '../config/AppSetting';
-
-const API_ROOT = Config.BASE_URL;
+const API_ROOT = 'https://the-books-api-dev.enouvo.com';
 
 axios.defaults.baseURL = API_ROOT;
 axios.defaults.timeout = 15000;
 
 axios.interceptors.request.use(
-  config => config,
-  error => Promise.reject(error),
+  (config) => config,
+  (error) => Promise.reject(error),
 );
 
 axios.interceptors.response.use(
-  response => response,
-  error => handleError(error),
+  (response) => response,
+  (error) => handleError(error),
 );
 
-const handleError = error => {
+const handleError = (error) => {
   let dataCode = 'not_response';
   if (error.response) {
     const { code, message, data, status } = error.response;
@@ -76,7 +74,7 @@ const http = {
   },
   postUploadFile(url, data = {}) {
     let formData = new FormData();
-    data.photos.forEach(photo => {
+    data.photos.forEach((photo) => {
       formData.append('photos', {
         uri: photo,
         type: 'image/jpg',

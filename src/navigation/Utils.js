@@ -1,8 +1,6 @@
+import React from 'react';
 import { Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { Colors, Fonts } from '../themes';
-import { iconsMap } from '../utils/AppIcons';
-import Root from './Root';
 
 const SIDE_MENU_ID = 'sideMenu';
 const SCREEN_OVERLAY = {
@@ -11,11 +9,10 @@ const SCREEN_OVERLAY = {
 };
 
 export const defaultBottomTab = {
-  textColor: Colors.tabInActiveColor,
-  iconColor: Colors.tabInActiveColor,
-  selectedIconColor: Colors.tabActiveColor,
-  selectedTextColor: Colors.tabActiveColor,
-  fontFamily: Fonts.type.regular,
+  textColor: 'grey',
+  iconColor: 'grey',
+  selectedIconColor: 'black',
+  selectedTextColor: 'black',
   iconInsets: {
     top: 5,
     left: 0,
@@ -35,12 +32,11 @@ export const defaultTopBar = {
   noBorder: true, // no border for ios
   elevation: 0, // no border for android
   title: {
-    fontFamily: Fonts.type.semiBold,
     alignment: 'center',
     fontSize: 16,
   },
   background: {
-    color: Colors.default,
+    color: 'white',
   },
 };
 
@@ -127,11 +123,174 @@ class NavigationUtils {
   }
 
   startLoginContent() {
-    Root.login();
+    Navigation.setRoot({
+      root: {
+        stack: {
+          children: [
+            {
+              component: {
+                name: 'Login',
+                options: {
+                  topBar: {
+                    visible: false,
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
+    });
   }
-
+  startIntroContent() {
+    Navigation.setRoot({
+      root: {
+        stack: {
+          children: [
+            {
+              component: {
+                name: 'Introduction',
+                options: {
+                  topBar: {
+                    visible: false,
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
+    });
+  }
   startMainContent() {
-    Root.main();
+    Navigation.setRoot({
+      root: {
+        bottomTabs: {
+          children: [
+            {
+              stack: {
+                id: 'HomePage',
+                children: [
+                  {
+                    component: {
+                      name: 'HomePage',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/ic-book.png'),
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              stack: {
+                id: 'Bill',
+                children: [
+                  {
+                    component: {
+                      name: 'Bill',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/files.png'),
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              stack: {
+                id: 'Profile',
+                children: [
+                  {
+                    component: {
+                      name: 'Profile',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/avatar.jpg'),
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              stack: {
+                id: 'Notice',
+                children: [
+                  {
+                    component: {
+                      name: 'Notice',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/bell.png'),
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              stack: {
+                id: 'Library',
+                children: [
+                  {
+                    component: {
+                      name: 'Library',
+                      options: {
+                        topBar: {
+                          visible: false,
+                        },
+                        bottomTab: {
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          iconWidth: 21,
+                          iconHeight: 21,
+                          icon: require('../assets/Images/home.png'),
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    });
   }
 
   push({
@@ -169,7 +328,7 @@ class NavigationUtils {
                 alignment: 'center',
                 fontSize: 18,
                 fontWeight: 'regular',
-                color: Colors.neutralBlack,
+                color: 'black',
               },
               subtitle: {
                 text: subtitle,
@@ -179,15 +338,6 @@ class NavigationUtils {
                 color: subtitleColor,
               },
               buttonColor: 'red',
-              leftButtons: isBack
-                ? [
-                    {
-                      id: 'backBtt',
-                      icon: iconsMap['ic-arrow-left-18px'],
-                    },
-                  ]
-                : leftButtons || [],
-              rightButtons: rightButtons || [],
             },
           },
         },
@@ -209,7 +359,7 @@ class NavigationUtils {
         {
           id: 'doneBtt',
           text: 'Save',
-          color: Colors.primary,
+          color: 'black',
         },
       ];
     }
@@ -232,19 +382,7 @@ class NavigationUtils {
                       text: title,
                       alignment: 'center',
                       fontSize: 16,
-                      fontFamily: Fonts.type.regular,
                     },
-                    leftButtons: isClose
-                      ? [
-                          {
-                            id: 'closeBtt',
-                            icon: iconsMap['ic-arrow-left-18px'],
-                            color: Colors.neutralGrey,
-                            text: 'close',
-                          },
-                        ]
-                      : [],
-                    rightButtons,
                   },
                   modalPresentationStyle: 'fullScreen',
                 },
@@ -322,13 +460,6 @@ class NavigationUtils {
               text: title,
             },
             buttonColor: 'black',
-            leftButtons: [
-              {
-                id: 'menuBtt',
-                icon: iconsMap['ios-menu'],
-                color: 'black',
-              },
-            ],
           },
           layout: {
             backgroundColor: 'white',
@@ -388,7 +519,7 @@ class NavigationUtils {
     });
   };
 
-  dismissOverlay = id => {
+  dismissOverlay = (id) => {
     Navigation.dismissOverlay(id);
   };
 }

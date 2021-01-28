@@ -3,25 +3,25 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import Fonts from '../../themes/Fonts';
 import Colors from '../../themes/Colors';
 import IconStar from './IconStar';
-const HomeBookItem = ({ item }) => {
+const HomeBookItem = (props) => {
   var iconRatings = [];
 
-  for (let i = 0; i < item.rating; i++) {
+  for (let i = 0; i < props.item.rating; i++) {
     iconRatings.push(<IconStar color={Colors.primary} />);
   }
-  for (let i = 0; i < 5 - item.rating; i++) {
+  for (let i = 0; i < 5 - props.item.rating; i++) {
     iconRatings.push(<IconStar color={Colors.greyAuthor} />);
   }
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.style && props.style]}>
       <View>
-        <Image source={{ uri: item.image }} style={styles.imgItem} />
+        <Image source={{ uri: props.item.image }} style={styles.imgItem} />
       </View>
-      <Text style={styles.txtNameBook}>{item.name}</Text>
-      <Text style={styles.txtAuthor}>{item.author}</Text>
+      <Text style={styles.txtNameBook}>{props.item.name}</Text>
+      <Text style={styles.txtAuthor}>{props.item.author}</Text>
       <View style={styles.containerBottom}>
         <View style={styles.containerRating}>{iconRatings}</View>
-        <Text style={styles.txtNumberBuyer}>{item.numberBuyer}</Text>
+        <Text style={styles.txtNumberBuyer}>{props.item.numberBuyer}</Text>
       </View>
     </View>
   );
@@ -39,13 +39,6 @@ const styles = StyleSheet.create({
     height: 160,
     borderRadius: 1.5,
     shadowColor: 'rgba(0, 0, 0, 0.22)',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 2,
-    // },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 3.84,
-    // elevation: 5,
   },
   txtNameBook: {
     fontSize: 14,

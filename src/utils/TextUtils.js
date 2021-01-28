@@ -1,16 +1,13 @@
 import moment from 'moment';
 
-export const timeToNow = time => {
+export const timeToNow = (time) => {
   return moment(time).fromNow();
 };
 
-export const setStartTimeInDate = strDate => {
+export const setStartTimeInDate = (strDate) => {
   const isCurrentDay = strDate === moment(new Date()).format('DD.MM.YYYY');
   const startTimeInDate = isCurrentDay
-    ? moment(
-        ` ${strDate} ${moment(new Date()).format('HH:mm')}`,
-        'DD.MM.YYYY HH:mm',
-      )
+    ? moment(` ${strDate} ${moment(new Date()).format('HH:mm')}`, 'DD.MM.YYYY HH:mm')
     : moment(` ${strDate} 8:00`, 'DD.MM.YYYY HH:mm');
   return startTimeInDate;
 };
@@ -21,18 +18,17 @@ export const formatDateRange = (startTime, endTime) => {
   return `${startTimeStr} - ${endTimeStr}`;
 };
 
-export const formatNumber = number =>
-  String(number).replace(/(.)(?=(\d{3})+$)/g, '$1.');
+export const formatNumber = (number) => String(number).replace(/(.)(?=(\d{3})+$)/g, '$1.');
 
-export const formatDate = time => {
+export const formatDate = (time) => {
   return `${moment(time).format('DD MMM, YYYY')} `;
 };
 
-export const formatTime = time => {
+export const formatTime = (time) => {
   return `${moment(time).format('h:mm A')} `;
 };
 
-export const formatDateTime = time => {
+export const formatDateTime = (time) => {
   return `${moment(time).format('h:mm A, MMM DD')} `;
 };
 
@@ -43,15 +39,12 @@ export const formatMoney = (number, n, x) => {
     .replace(new RegExp(re, 'g'), '$&,');
 };
 
-export const formatDurationTime = duration => {
-  const minutes =
-    duration._data.minutes < 0
-      ? duration._data.minutes * -1
-      : duration._data.minutes;
+export const formatDurationTime = (duration) => {
+  const minutes = duration._data.minutes < 0 ? duration._data.minutes * -1 : duration._data.minutes;
   return `${duration._data.hours} H ${minutes} MIN`;
 };
 
-export const stringToSlug = str => {
+export const stringToSlug = (str) => {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
   str = str.toLowerCase();
   // remove accents, swap ñ for n, etc

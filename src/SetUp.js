@@ -1,59 +1,48 @@
-// In index.js of a new project
+import React from 'react';
 import { Navigation } from 'react-native-navigation';
-import HomeScreen from './screens/App/HomeScreen';
-import Introduction from './screens/Intro';
-import HomePage from './screens/Home';
-// import Filter from './screens/Filter';
-// Home screen declaration
 
-HomeScreen.options = {
-  topBar: {
-    title: {
-      text: 'Home',
-    },
-  },
-};
+import { Alert } from 'react-native';
+import { registerScreens } from './navigation/index';
+import configureStore from './redux/store';
+import { startup } from './redux/AppRedux/actions';
 
-// Settings screen declaration - this is the screen we'll be pushing into the stack
+export let store = null;
 
-//register screen
-Navigation.registerComponent('Home', () => HomeScreen);
-Navigation.registerComponent('Introduction', () => Introduction);
-Navigation.registerComponent('HomePage', () => HomePage);
+const App = () => {
+  const loadIntial = () => {
+    return Promise.all([loadStore()])
+      .then((response) => {
+        store = response[0];
+        // Load finish here
+        store.dispatch(startup());
+      })
+      .catch((err) => {});
+  };
 
-Navigation.setDefaultOptions({
-  statusBar: {
-    backgroundColor: 'white',
-  },
-  topBar: {
-    title: {
-      color: 'black',
-    },
-    backButton: {
-      color: 'black',
-    },
-    background: {
-      color: 'white',
-    },
-  },
-});
-
-// eslint-disable-next-line no-undef
-export default App = () => {
-  Navigation.events().registerAppLaunchedListener(async () => {
-    Navigation.setRoot({
-      root: {
-        stack: {
-          children: [
-            {
-              component: {
-                id: 'HomeScreen',
-                name: 'Home',
-              },
-            },
-          ],
-        },
-      },
+  const loadStore = async () => {
+    return new Promise((resolve) => {
+      configureStore((tempStore, persistor) => {
+        // configI18n(get(tempStore.getState(), 'app.language'));
+        registerScreens(tempStore, persistor);
+        resolve(tempStore, persistor);
+      });
     });
+  };
+  // step 1
+  Navigation.events().registerAppLaunchedListener(async () => {
+    try {
+      await loadIntial();
+      Navigation.setDefaultOptions({
+        layout: {
+          backgroundColor: 'white',
+          orientation: ['portrait'], // An array of supported orientations
+        },
+      });
+    } catch (error) {
+      //
+      Alert.alert('Init unsuccessful', error.message);
+    }
   });
 };
+
+export default App;

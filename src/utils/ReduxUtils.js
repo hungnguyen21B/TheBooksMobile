@@ -1,10 +1,10 @@
-import { call, put } from 'redux-saga/effects';
+// import { call, put } from 'redux-saga/effects';
 import _ from 'lodash';
-import { loading, clearLoading } from '../redux/AppRedux/actions';
+// import { loading, clearLoading } from '../redux/AppRedux/actions';
 
 export function makeConstantCreator(...params) {
   const constant = {};
-  _.each(params, param => {
+  _.each(params, (param) => {
     constant[param] = param;
   });
   return constant;
@@ -14,24 +14,11 @@ export const makeActionCreator = (type, params = null) => ({ type, ...params });
 
 export const makeReducerCreator = (initialState = null, handlers = {}) => (
   state = initialState,
-  action
+  action,
 ) => {
-  if (!action?.type) return state;
+  if (!action?.type) {
+    return state;
+  }
   const handler = handlers[action.type];
   return (handler && handler(state, action)) || state;
 };
-
-export function* apiWrapper(isHaveProgress = false, apiFunc, ...params) {
-  try {
-    // dismissInAppNoti();
-    if (isHaveProgress) {
-      yield put(loading());
-    }
-    const response = yield call(apiFunc, ...params);
-    yield put(clearLoading());
-    return response;
-  } catch (error) {
-    yield put(clearLoading());
-    throw error;
-  }
-}

@@ -1,11 +1,9 @@
 import _ from 'lodash';
 import { Platform } from 'react-native';
-import Config from '../config/AppSetting';
-import DeviceInfo from 'react-native-device-info';
 
 import { store } from '../Setup';
 
-const checkIfErrorOccurs = res => {
+const checkIfErrorOccurs = (res) => {
   return {
     code: res.status,
     res,
@@ -74,11 +72,11 @@ export const timeoutPromise = function timeoutPromise(ms, promise) {
       reject(new Error('Request time out! Please try again.'));
     }, ms);
     promise.then(
-      res => {
+      (res) => {
         clearTimeout(timeoutId);
         resolve(res);
       },
-      err => {
+      (err) => {
         clearTimeout(timeoutId);
         reject(err);
       },
@@ -93,7 +91,7 @@ function requestWrapper(method) {
     let url = _url;
     let data = _data;
     let params = _params;
-    url = Config.BASE_URL + url;
+    url = 'https://the-books-api-dev.enouvo.com' + url;
     if (method === 'GET') {
       // is it a GET?
       // GET doesn't have data
@@ -134,7 +132,6 @@ function requestWrapper(method) {
     }
 
     defaults.headers.Platform = Platform.OS === 'ios' ? 'ios' : 'android';
-    defaults.headers.VersionNo = `${DeviceInfo.getVersion()}.${DeviceInfo.getBuildNumber()}`;
     defaults.headers['Cache-Control'] = 'no-cache';
 
     // defaults.headers.Platform = Platform.OS === 'ios' ? 'ios' : 'android';
@@ -159,7 +156,7 @@ function requestWrapper(method) {
 function getQueryString(params) {
   const esc = encodeURIComponent;
   return Object.keys(params)
-    .map(k => `${esc(k)}=${esc(params[k])}`)
+    .map((k) => `${esc(k)}=${esc(params[k])}`)
     .join('&');
 }
 

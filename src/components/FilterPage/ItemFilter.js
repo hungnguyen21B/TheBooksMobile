@@ -33,7 +33,7 @@ const ItemFilter = (props) => {
           <Text style={styles.textAuthor}>{props.item.author}</Text>
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <View style={{ flexDirection: 'row' }}>{iconRatings}</View>
-            <Text>{props.item.numberBuyer}</Text>
+            <Text style={styles.rating}>{props.item.numberBuyer}</Text>
           </View>
           <View style={{ flexDirection: 'row', marginTop: 20 }}>
             <View style={{ flexDirection: 'row' }}>
@@ -72,9 +72,11 @@ const styles = StyleSheet.create({
 
   textAuthor: {
     fontSize: 16,
-    fontFamily: 'SVN-ProximaNova',
     marginTop: 5,
     fontFamily: Fonts.type.primary,
     color: Colors.greyAuthor,
   },
+  rating:{
+    fontFamily: Fonts.type.primary,
+  }
 });

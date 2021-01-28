@@ -3,22 +3,40 @@ import { Navigation } from 'react-native-navigation';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-
-import Login from '../screens/Login';
-import Home from '../screens/Home';
-import SignUp from '../screens/Login/SignUp';
-import ForgotPassword from '../screens/Login/ForgotPassword';
-
+import Login from '../screens/Authentication/Login';
+import Drawer from '../screens/App/Drawer';
+import Introduction from '../screens/Intro';
+import HomePage from '../screens/Home';
+import Detail from '../screens/Intro/Detail';
+import SearchPage from '../screens/Home/SearchPage';
+import ViewAll from '../screens/Home/ViewAll';
+import Cart from '../screens/Cart';
+import SignUp from '../screens/Authentication/SignUp';
+import Notice from '../screens/Notice';
+import Bill from '../screens/Bill';
+import Library from '../screens/Library';
+import Profile from '../screens/Profile';
+import Filter from '../screens/Filter';
 const SCREENS_WITH_REDUX = {
   Login,
-  Home,
+  Drawer,
+  Introduction,
+  HomePage,
+  Detail,
+  SearchPage,
+  ViewAll,
+  Cart,
   SignUp,
-  ForgotPassword,
+  Notice,
+  Bill,
+  Library,
+  Profile,
+  Filter,
 };
 const SCREENS = {};
 
 function registerScreens(store, persistor) {
-  const PersistProvider = props => {
+  const PersistProvider = (props) => {
     const { children } = props;
 
     return (
@@ -30,7 +48,7 @@ function registerScreens(store, persistor) {
     );
   };
 
-  Object.keys(SCREENS_WITH_REDUX).map(screenName => {
+  Object.keys(SCREENS_WITH_REDUX).map((screenName) => {
     Navigation.registerComponentWithRedux(
       screenName,
       () => gestureHandlerRootHOC(SCREENS_WITH_REDUX[screenName]),
@@ -39,7 +57,7 @@ function registerScreens(store, persistor) {
     );
   });
 
-  Object.keys(SCREENS).map(screenName => {
+  Object.keys(SCREENS).map((screenName) => {
     Navigation.registerComponent(screenName, () => SCREENS[screenName]);
   });
 }

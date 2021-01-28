@@ -1,7 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { markSkipIntro } from '../redux/AppRedux/actions';
+import { NavigationUtils } from '../navigation';
 const IntroItem = (props) => {
+  const dispatch = useDispatch();
+  const skipIntroAndShowLogin = () => {
+    console.log('abb');
+    dispatch(markSkipIntro(true));
+    NavigationUtils.startLoginContent();
+  };
   return (
     <View style={styles.containerMain}>
       <View style={styles.container}>
@@ -13,7 +21,7 @@ const IntroItem = (props) => {
       </View>
       {props.item.startBtn ? (
         <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.btnStart}>
+          <TouchableOpacity style={styles.btnStart} onPress={skipIntroAndShowLogin}>
             <Text style={styles.textBtnStart}>Bắt đầu</Text>
           </TouchableOpacity>
         </View>
