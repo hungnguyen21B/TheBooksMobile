@@ -12,6 +12,8 @@ import SearchPage from '../screens/Home/SearchPage';
 import ViewAll from '../screens/Home/ViewAll';
 import Cart from '../screens/Cart';
 import SignUp from '../screens/Authentication/SignUp';
+import Orders from '../screens/Orders';
+import Notifications from '../screens/Notifications';
 const SCREENS_WITH_REDUX = {
   Login,
   Home,
@@ -22,6 +24,8 @@ const SCREENS_WITH_REDUX = {
   ViewAll,
   Cart,
   SignUp,
+  Orders,
+  Notifications,
 };
 const SCREENS = {};
 
