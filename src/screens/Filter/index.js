@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/thebook-appicon';
 import ItemFilter from '../../components/FilterPage/ItemFilter';
-import HomeBookItem from '../../components/HomePage/HomeBookItem';
+import ItemFilter2 from '../../components/FilterPage/ItemFilter2';
+import Type from '../../components/HomePage/Type';
+import { Navigation } from 'react-native-navigation';
+import Category from '../../components/FilterPage/Category';
+import ic_launcher from '../../../android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png';
 
 const Filter = (props) => {
-  const [select, setSelect] = useState(false);
   const [iconActive, setIconActive] = useState(false);
 
   const listBooks = [
@@ -86,30 +89,47 @@ const Filter = (props) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.filter}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() =>
+            Navigation.push(props.componentId, {
+              component: {
+                name: 'Category',
+                options: {
+                  topBar: {
+                    title: {
+                      text: 'The loai',
+                      alignment: 'center',
+                    },
+                  },
+                },
+              },
+            })
+          }
+        >
           <Text style={styles.text}>Thể loại</Text>
-          {/* <Icon size={20} name="filter" color="grey" iconStyle={{ marginRight: 50 }} /> */}
+          <Icon size={20} name="filter" color="grey" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.btn2}>
           <Text style={styles.text}>Sắp xếp</Text>
-          {/* <Icon size={20} name="select" color="grey" /> */}
+          <Icon size={20} name="select" color="grey" />
         </TouchableOpacity>
         {iconActive === false ? (
-          <TouchableOpacity style={styles.btn3} onPress={() => setSelect(true)}>
+          <TouchableOpacity style={styles.btn3} onPress={() => setIconActive(true)}>
             <Icon size={30} name="ic-filter-change" color="grey" />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity style={styles.btn3} onPress={() => setSelect(false)}>
+          <TouchableOpacity style={styles.btn3} onPress={() => setIconActive(false)}>
             <Icon size={30} name="ic-filter-change-2" color="grey" />
           </TouchableOpacity>
         )}
       </View>
       <View style={styles.content}>
         {listBooks.map((item) => {
-          return select === false ? (
+          return iconActive === false ? (
             <ItemFilter item={item} key={item.id} />
           ) : (
-            <HomeBookItem item={item} key={item.id} />
+            <ItemFilter2 item={item} key={item.id} />
           );
         })}
       </View>
@@ -118,7 +138,7 @@ const Filter = (props) => {
 };
 
 export default Filter;
-
+Navigation.registerComponent('Category', () => Category);
 const styles = StyleSheet.create({
   container: { flex: 1 },
   filter: {
@@ -128,8 +148,9 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    paddingRight: 100,
-    marginTop: 15,
+    paddingRight: 70,
+    alignItems: 'center',
+
     marginLeft: 15,
   },
   btn: {
@@ -140,6 +161,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopWidth: 1,
     flexDirection: 'row',
+    alignItems: 'center',
   },
   btn2: {
     width: '45%',
@@ -149,6 +171,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopWidth: 1,
     flexDirection: 'row',
+    alignItems: 'center',
   },
   btn3: {
     width: '15%',
@@ -163,7 +186,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   content: {
-    paddingHorizontal: 15,
+    width: '100%',
+    paddingHorizontal: 25,
     padding: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 });
