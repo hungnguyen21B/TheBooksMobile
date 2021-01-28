@@ -6,7 +6,6 @@ import configureStore from './redux/store';
 import { startup } from './redux/AppRedux/actions';
 
 export let store = null;
-
 const App = () => {
   const loadIntial = () => {
     return Promise.all([loadStore()])
@@ -27,7 +26,6 @@ const App = () => {
       });
     });
   };
-  // step 1
   Navigation.events().registerAppLaunchedListener(async () => {
     try {
       await loadIntial();

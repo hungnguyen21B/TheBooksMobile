@@ -14,7 +14,6 @@ import PasswordItem from '../../components/PasswordItem';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginTypes from '../../redux/LoginRedux/actions';
 import { NavigationUtils } from '../../navigation';
-
 const Login = () => {
   const [] = useState(true);
   const [email, setEmail] = useState('');
@@ -40,7 +39,7 @@ const Login = () => {
     <ScrollView style={styles.container}>
       <View style={styles.layoutTitle}>
         <Icon name="ic-delete" size={24} style={{ marginTop: 4 }} onPress={onClose} />
-        <Text style={styles.title}> Đăng nhậpp </Text>
+        <Text style={styles.title}> Đăng nhập </Text>
       </View>
       <TextInputItem title="Email" ChangeText={(val) => setEmail(val)} />
       <PasswordItem
