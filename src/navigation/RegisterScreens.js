@@ -16,6 +16,7 @@ import Notice from '../screens/Notice';
 import Bill from '../screens/Bill';
 import Library from '../screens/Library';
 import Profile from '../screens/Profile';
+import SettingProfile from '../screens/Profile/SettingProfile';
 const SCREENS_WITH_REDUX = {
   Login,
   Drawer,
@@ -30,6 +31,7 @@ const SCREENS_WITH_REDUX = {
   Bill,
   Library,
   Profile,
+  SettingProfile,
 };
 const SCREENS = {};
 

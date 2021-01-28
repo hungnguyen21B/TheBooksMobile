@@ -13,14 +13,12 @@ const ViewAll = (props) => {
         style={styles.containerBtnBack}
         onPress={() => {
           // NavigationUtils.pop();
-
         }}
       >
         <Icon name="ic-back" size={13} color={Colors.blackIcon} />
       </TouchableOpacity>
       <Text style={styles.txtTitle}>Đọc nhiều</Text>
       <View style={styles.gridContainerItems}>
-
         {DATA.map((item) => {
           return <HomeBookItem item={item} style={styles.cardItem} />;
         })}

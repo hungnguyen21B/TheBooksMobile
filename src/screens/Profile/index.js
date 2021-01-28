@@ -12,12 +12,11 @@ import {
 import Icon from 'react-native-vector-icons/thebook-appicon';
 import Images from '../../themes/Images';
 import Type from '../../components/HomePage/Type';
+import { NavigationUtils } from '../../navigation';
 const WIDTH = window.width;
 var { width } = Dimensions.get('window');
 var box_width = width / 3;
 var box = width / 2;
-var check = false;
-var checkV = true;
 const clickH = () => {
   return true;
 };
@@ -26,42 +25,25 @@ const types = [
     id: '1',
   },
 ];
-
+const onSettingProfile = () => {
+  NavigationUtils.push({ screen: 'SettingProfile', title: 'Cài đặt thông tin' });
+};
 const Profile = () => {
+  const [isRow, setRow] = useState(true);
+  const [isColumn, setColumn] = useState(false);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.headerIcon}>
-        <TouchableOpacity
-          style={{ width: 30, height: 30, justifyContent: 'center', alignSelf: 'center' }}
-        >
+        <TouchableOpacity style={styles.buttonIcon}>
           <Icon name="ic-photo" size={20} color="white" style={styles.iconPhoto} />
         </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            width: 30,
-            height: 30,
-            justifyContent: 'center',
-            alignSelf: 'center',
-            textAlign: 'right',
-            marginLeft: 270,
-          }}
-        >
+        <TouchableOpacity style={styles.buttonIcon} onPress={onSettingProfile}>
           <Icon name="ic-setting" size={20} color="white" style={styles.iconSetting} />
         </TouchableOpacity>
       </View>
       <Image source={Images.avatar} style={styles.avatarImage} />
       <View style={styles.nameView}>
-        <Text
-          style={{
-            color: 'white',
-            fontFamily: 'SVN-ProximaNova',
-            fontSize: 30,
-            fontWeight: '600',
-            marginLeft: 15,
-          }}
-        >
-          Hoàng Thị Thủy
-        </Text>
+        <Text style={styles.name}>Hoàng Thị Thủy</Text>
       </View>
       <View
         style={{
@@ -101,61 +83,29 @@ const Profile = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ flexDirection: 'row', marginTop: 24, marginLeft: 10 }}>
-        <View style={{ justifyContent: 'center', alignItems: 'center', width: box_width }}>
-          <Text style={{ fontSize: 16 }}>Đang mượn</Text>
-          <Text style={{ fontSize: 16 }}>12</Text>
+      <View style={styles.viewAction}>
+        <View style={styles.actionType}>
+          <Text style={styles.sizeText}>Đang mượn</Text>
+          <Text style={styles.sizeText}>12</Text>
         </View>
-        <View style={{ justifyContent: 'center', alignItems: 'center', width: box_width }}>
-          <Text style={{ fontSize: 16 }}>Yêu thích</Text>
-          <Text style={{ fontSize: 16 }}>12</Text>
+        <View style={styles.actionType}>
+          <Text style={styles.sizeText}>Yêu thích</Text>
+          <Text style={styles.sizeText}>23</Text>
         </View>
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: box_width,
-            marginRight: 15,
-          }}
-        >
-          <Text style={{ fontSize: 16 }}>Tích điểm</Text>
-          <Text style={{ fontSize: 16 }}>12</Text>
+        <View style={styles.actionType}>
+          <Text style={styles.sizeText}>Tích điểm</Text>
+          <Text style={styles.sizeText}>537</Text>
         </View>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginTop: 30,
-          borderBottomColor: '#ababab',
-          borderTopWidth: 0.5,
-          borderTopColor: '#ababab',
-          borderBottomWidth: 0.5,
-          paddingBottom: 8,
-          paddingTop: 8,
-        }}
-      >
-        <View
-          style={{
-            width: box,
-            justifyContent: 'center',
-            alignSelf: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <TouchableOpacity onPress={() => clickH()}>
-            <Icon name="ic-filter-change-2" size={40} color={clickH() ? '#ababab' : '#000'} />
+      <View style={styles.rowButton}>
+        <View style={styles.viewBt}>
+          <TouchableOpacity onPress={() => [setRow(!isRow), setColumn(!isColumn)]}>
+            <Icon name="ic-filter-change-2" size={40} color={isRow ? '#ababab' : '#000'} />
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            width: box,
-            justifyContent: 'center',
-            alignSelf: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <TouchableOpacity onPress={() => clickH()}>
-            <Icon name="ic-filter-change" size={40} color={!clickH() ? '#ababab' : '#000'} />
+        <View style={styles.viewBt}>
+          <TouchableOpacity onPress={() => [setRow(!isRow), setColumn(!isColumn)]}>
+            <Icon name="ic-filter-change" size={40} color={isRow ? '#000' : '#ababab'} />
           </TouchableOpacity>
         </View>
       </View>
@@ -171,6 +121,33 @@ const Profile = () => {
 export default Profile;
 
 const styles = StyleSheet.create({
+  viewBt: {
+    width: box,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+  },
+  rowButton: {
+    flexDirection: 'row',
+    marginTop: 30,
+    borderBottomColor: '#ababab',
+    borderTopWidth: 0.5,
+    borderTopColor: '#ababab',
+    borderBottomWidth: 0.5,
+    paddingBottom: 8,
+    paddingTop: 8,
+  },
+  name: {
+    color: 'white',
+    fontFamily: 'SVN-ProximaNova',
+    fontSize: 30,
+    fontWeight: '600',
+    marginLeft: 15,
+  },
+  buttonIcon: { width: 30, height: 30, justifyContent: 'center', alignSelf: 'center' },
+  viewAction: { flexDirection: 'row', marginTop: 24, marginLeft: 10 },
+  sizeText: { fontSize: 16, fontFamily: 'SVN-ProximaNova' },
+  actionType: { justifyContent: 'center', alignItems: 'center', width: box_width },
   cardItem: {
     width: '50%',
     marginRight: 0,
