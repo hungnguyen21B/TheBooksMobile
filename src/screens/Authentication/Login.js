@@ -40,7 +40,7 @@ const Login = () => {
     <ScrollView style={styles.container}>
       <View style={styles.layoutTitle}>
         <Icon name="ic-delete" size={24} style={{ marginTop: 4 }} onPress={onClose} />
-        <Text style={styles.title}> Đăng nhập </Text>
+        <Text style={styles.title}> Đăng nhậpp </Text>
       </View>
       <TextInputItem title="Email" ChangeText={(val) => setEmail(val)} />
       <PasswordItem

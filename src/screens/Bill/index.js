@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#4a4a4a',
     fontFamily: 'SVN-ProximaNova',
-    fontSize: 16,
+    fontSize: 20,
     textAlign: 'center',
   },
 });
