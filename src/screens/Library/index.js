@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   },
   libraryContain: {
     flexDirection: 'row',
-    marginTop: 20,
   },
   container: {
     marginTop: -230,
@@ -133,5 +132,6 @@ const styles = StyleSheet.create({
   },
   infoContain: {
     paddingHorizontal: 25,
+    marginBottom: 20,
   },
 });
