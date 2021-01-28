@@ -1,8 +1,5 @@
 export const type = {
-  regular: 'SFProDisplay-Regular',
-  medium: 'SFProDisplay-Medium',
-  semibold: 'SFProDisplay-Semibold',
-  light: 'SFProDisplay-Light',
+  primary: 'SVN-ProximaNova',
 };
 
 export const size = {

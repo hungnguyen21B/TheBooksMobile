@@ -53,5 +53,6 @@ export default (onComplete) => {
   const persistor = persistStore(store, {}, () => onComplete(store, persistor));
   sagaMiddleware.run(rootSaga);
 
+  //
   return { store, persistor };
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Navigation } from 'react-native-navigation';
 import { Alert } from 'react-native';
 import { registerScreens } from './navigation/index';
@@ -5,13 +6,11 @@ import configureStore from './redux/store';
 import { startup } from './redux/AppRedux/actions';
 
 export let store = null;
-
 const App = () => {
   const loadIntial = () => {
     return Promise.all([loadStore()])
       .then((response) => {
         store = response[0];
-
         // Load finish here
         store.dispatch(startup());
       })
@@ -27,7 +26,6 @@ const App = () => {
       });
     });
   };
-
   Navigation.events().registerAppLaunchedListener(async () => {
     try {
       await loadIntial();

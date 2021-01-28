@@ -82,6 +82,8 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+
+
 project.ext.vectoricons = [
 iconFontNames: [ 'thebook-appicon.ttf', 'FontAwesome.ttf' ] // Name of the font files you want to copy
 ]
