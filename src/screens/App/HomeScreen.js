@@ -102,6 +102,32 @@ const HomeScreen = (props) => {
       >
         <Text>Logout</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          height: 50,
+          width: 100,
+          backgroundColor: 'pink',
+          marginTop: 10,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        onPress={() => NavigationUtils.push({ screen: 'Orders', isTopBarEnable: false })}
+      >
+        <Text>Orders</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          height: 50,
+          width: 100,
+          backgroundColor: 'pink',
+          marginTop: 10,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        onPress={() => NavigationUtils.push({ screen: 'Notifications', isTopBarEnable: false })}
+      >
+        <Text>Notifications</Text>
+      </TouchableOpacity>
     </View>
   );
 };

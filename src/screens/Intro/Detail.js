@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/jsx-no-undef */
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Images from '../../themes/Images';
 import Icon from 'react-native-vector-icons/thebook-appicon';
@@ -8,6 +8,7 @@ import HomeBookItem from '../../components/HomePage/HomeBookItem';
 import EvaluateItem from '../../components/EvaluateItem';
 import Colors from '../../themes/Colors';
 import IconStar from '../../components/HomePage/IconStar';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 const Detail = () => {
   const listBooks = [
@@ -92,6 +93,8 @@ const Detail = () => {
   for (let i = 0; i < 5 - 4; i++) {
     iconRatings.push(<IconStar color={Colors.greyAuthor} />);
   }
+
+  const [showAlert, setShowAlert] = useState(false);
   return (
     <ScrollView>
       <View style={styles.iconHeader}>
@@ -170,10 +173,30 @@ const Detail = () => {
       </View>
 
       <View style={styles.addToCartContainer}>
-        <TouchableOpacity style={styles.addToCart}>
+        <TouchableOpacity style={styles.addToCart} onPress={() => setShowAlert(true)}>
           <Text style={styles.textAddToCart}>Thêm vào giỏ</Text>
         </TouchableOpacity>
       </View>
+      <AwesomeAlert
+        show={showAlert}
+        showProgress={false}
+        message="Sách này hiện đã được mượn hết
+Bạn có muốn nhận thông báo ngay khi có lại"
+        closeOnTouchOutside={false}
+        closeOnHardwareBackPress={false}
+        showConfirmButton={true}
+        showCancelButton={true}
+        cancelText="Không, cám ơn"
+        confirmText="Nhận thông báo"
+        confirmButtonColor={Colors.primary}
+        onConfirmPressed={() => setShowAlert(false)}
+        onCancelPressed={() => setShowAlert(false)}
+        messageStyle={{ textAlign: 'center' }}
+        contentContainerStyle={styles.alertContainer}
+        confirmButtonStyle={styles.confirmBtn}
+        cancelButtonStyle={styles.cancelBtn}
+        cancelButtonTextStyle={styles.textCancel}
+      />
     </ScrollView>
   );
 };
@@ -317,6 +340,29 @@ const styles = StyleSheet.create({
   },
   addToCartContainer: {
     paddingHorizontal: 18,
+  },
+  alertContainer: {
+    width: '100%',
+  },
+  confirmBtn: {
+    width: 120,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  cancelBtn: {
+    width: 120,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: Colors.secondary,
+    backgroundColor: 'white',
+    marginBottom: 20,
+  },
+  textCancel: {
+    color: 'black',
   },
 });
 export default Detail;

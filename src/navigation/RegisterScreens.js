@@ -4,7 +4,7 @@ import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import Login from '../screens/Authentication/Login';
-import Home from '../screens/App/HomeScreen';
+import Drawer from '../screens/App/Drawer';
 import Introduction from '../screens/Intro';
 import HomePage from '../screens/Home';
 import Detail from '../screens/Intro/Detail';
@@ -12,9 +12,14 @@ import SearchPage from '../screens/Home/SearchPage';
 import ViewAll from '../screens/Home/ViewAll';
 import Cart from '../screens/Cart';
 import SignUp from '../screens/Authentication/SignUp';
+import Notice from '../screens/Notice';
+import Bill from '../screens/Bill';
+import Library from '../screens/Library';
+import Profile from '../screens/Profile';
+import SettingProfile from '../screens/Profile/SettingProfile';
 const SCREENS_WITH_REDUX = {
   Login,
-  Home,
+  Drawer,
   Introduction,
   HomePage,
   Detail,
@@ -22,6 +27,11 @@ const SCREENS_WITH_REDUX = {
   ViewAll,
   Cart,
   SignUp,
+  Notice,
+  Bill,
+  Library,
+  Profile,
+  SettingProfile,
 };
 const SCREENS = {};
 
