@@ -18,7 +18,7 @@ const Type = ({ title }) => {
   console.log('   listBooksLength: ');
   console.log(Object.keys(listBooks).length);
   const data = [];
-  for (let i = 0; i < Object.keys(listBooks).length; i++) {
+  for (let i = 0; i < listBooks.length; i++) {
     data.push({
       id: listBooks[i].id,
       image: listBooks[i].medias[0],
