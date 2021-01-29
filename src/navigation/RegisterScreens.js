@@ -18,9 +18,9 @@ import Library from '../screens/Library';
 import Profile from '../screens/Profile';
 
 import SettingProfile from '../screens/Profile/SettingProfile';
+import { RNNDrawer } from 'react-native-navigation-drawer-extension';
 const SCREENS_WITH_REDUX = {
   Login,
-  Drawer,
   Introduction,
   HomePage,
   Detail,
@@ -39,7 +39,7 @@ const SCREENS = {};
 function registerScreens(store, persistor) {
   const PersistProvider = (props) => {
     const { children } = props;
-
+    Navigation.registerComponent('Drawer', () => RNNDrawer.create(Drawer));
     return (
       <Provider {...props}>
         <PersistGate loading={null} persistor={persistor}>

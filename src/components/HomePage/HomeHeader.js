@@ -16,8 +16,8 @@ const HomeHeader = (props) => {
             component: {
               name: 'Drawer',
               passProps: {
-                animationOpenTime: 300,
-                animationCloseTime: 300,
+                animationOpenTime: 100,
+                animationCloseTime: 100,
                 direction: 'left',
                 dismissWhenTouchOutside: true,
                 fadeOpacity: 0.6,

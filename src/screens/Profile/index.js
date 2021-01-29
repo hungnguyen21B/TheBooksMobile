@@ -13,24 +13,26 @@ import Icon from 'react-native-vector-icons/thebook-appicon';
 import Images from '../../themes/Images';
 import Type from '../../components/HomePage/Type';
 import { NavigationUtils } from '../../navigation';
+
 const WIDTH = window.width;
 var { width } = Dimensions.get('window');
 var box_width = width / 3;
 var box = width / 2;
-const clickH = () => {
-  return true;
-};
-const types = [
-  {
-    id: '1',
-  },
-];
-const onSettingProfile = () => {
-  NavigationUtils.push({ screen: 'SettingProfile', title: 'Cài đặt thông tin' });
-};
+
 const Profile = () => {
   const [isRow, setRow] = useState(true);
   const [isColumn, setColumn] = useState(false);
+
+  const types = [
+    {
+      id: '1',
+      name: 'Đọc nhiềuu',
+    },
+  ];
+
+  const onSettingProfile = () => {
+    NavigationUtils.push({ screen: 'SettingProfile', title: 'Cài đặt thông tin' });
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.headerIcon}>
@@ -110,8 +112,8 @@ const Profile = () => {
         </View>
       </View>
       <ScrollView style={{ marginHorizontal: 20 }} showsVerticalScrollIndicator={false}>
-        {types.map((type, key) => {
-          return <Type key={type.id} />;
+        {types.map((type) => {
+          return <Type title={type.name} key={type.id} />;
         })}
       </ScrollView>
     </ScrollView>
