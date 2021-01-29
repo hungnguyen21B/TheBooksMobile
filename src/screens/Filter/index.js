@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
   },
   content: {
     width: '100%',
+    marginRight:16,
     paddingHorizontal: 25,
     padding: 20,
     flexDirection: 'row',

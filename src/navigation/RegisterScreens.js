@@ -19,6 +19,7 @@ import Profile from '../screens/Profile';
 import SettingProfile from '../screens/Profile/SettingProfile';
 import { RNNDrawer } from 'react-native-navigation-drawer-extension';
 import EditProfile from '../screens/Profile/EditProfile';
+import Filter from '../screens/Filter';
 const SCREENS_WITH_REDUX = {
   Login,
   Introduction,
@@ -34,6 +35,7 @@ const SCREENS_WITH_REDUX = {
   Profile,
   SettingProfile,
   EditProfile,
+  Filter,
 };
 const SCREENS = {};
 

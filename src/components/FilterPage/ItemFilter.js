@@ -18,8 +18,8 @@ const ItemFilter = (props) => {
     iconRatings.push(<IconStar color={Colors.greyAuthor} />);
   }
   return (
-    <View>
-      <View style={{ flex: 1, flexDirection: 'row', marginBottom: 20 }}>
+    <View style={{ marginRight: 16, width: '95%'}}>
+      <View style={{ flex: 1, flexDirection: 'row', marginBottom: 20, marginRight: 16 }}>
         <View>
           <Image
             style={styles.img}
@@ -60,12 +60,15 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   content: {
+    marginRight: 16,
     paddingLeft: 10,
     paddingTop: 20,
+    width: 300,
   },
   text: {
+    width: 220,
     fontFamily: 'SVN-ProximaNova',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'normal',
     fontStyle: 'normal',
   },
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.type.primary,
     color: Colors.greyAuthor,
   },
-  rating:{
+  rating: {
     fontFamily: Fonts.type.primary,
-  }
+  },
 });

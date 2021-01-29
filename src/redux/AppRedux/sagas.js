@@ -25,13 +25,13 @@ export function* startupSaga() {
     const { isSkip } = yield select((state) => state.app);
     http.setAuthorizationHeader(token);
     //
-    if (token) {
-      yield put(getBookHome());
-      yield call(waitFor, (state) => state.home.dataBook != null);
-      NavigationUtils.startMainContent();
+    if (!isSkip) {
+      NavigationUtils.startIntroContent();
     } else {
-      if (!isSkip) {
-        NavigationUtils.startIntroContent();
+      if (token) {
+        yield put(getBookHome());
+        yield call(waitFor, (state) => state.home.dataBook != null);
+        NavigationUtils.startMainContent();
       } else {
         NavigationUtils.startLoginContent();
       }
