@@ -30,7 +30,7 @@ export function* startupSaga() {
       yield call(waitFor, (state) => state.home.dataBook != null);
       NavigationUtils.startMainContent();
     } else {
-      if (isSkip) {
+      if (!isSkip) {
         NavigationUtils.startIntroContent();
       } else {
         NavigationUtils.startLoginContent();

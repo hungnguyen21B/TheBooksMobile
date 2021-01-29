@@ -16,11 +16,6 @@ const WIDTH = window.width;
 var { width } = Dimensions.get('window');
 var box_width = width / 3;
 var box = width / 2;
-var check = false;
-var checkV = true;
-const clickH = () => {
-  return true;
-};
 const types = [
   {
     id: '1',

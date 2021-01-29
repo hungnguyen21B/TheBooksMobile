@@ -5,12 +5,12 @@ import Icon from 'react-native-vector-icons/thebook-appicon';
 
 const SettingProfileItem = (props) => {
   return (
-    <TouchableOpacity style={styles.settingButton}>
+    <View style={styles.settingButton}>
       <Icon name={props.name} size={30} color="#5f5f5f" />
-      <View style={styles.viewText}>
+      <TouchableOpacity style={styles.viewText} onPress={props.press}>
         <Text style={styles.title}>{props.title}</Text>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 };
 

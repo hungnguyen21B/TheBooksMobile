@@ -1,4 +1,4 @@
-import { put, call, takeLatest } from 'redux-saga/effects';
+import { put, call, takeLatest, select } from 'redux-saga/effects';
 import LoginActions, { LoginTypes } from './actions';
 import { startup } from '../AppRedux/actions';
 import { userLoginApi } from '../../api/auth';
@@ -9,7 +9,7 @@ export function* userLoginSaga({ data }) {
     console.log(response);
     const newResponse = {
       data: response.data,
-      token: response.data.token,
+      token: response.data.token.access_token,
     };
     yield put(LoginActions.userLoginSuccess(newResponse));
     yield put(startup());
