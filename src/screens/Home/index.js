@@ -7,7 +7,7 @@ const HomePage = () => {
   const types = [
     {
       id: '1ad',
-      name: 'Đọc nhiềuu',
+      name: 'Đọc nhiều',
     },
     {
       id: '2dasd',
