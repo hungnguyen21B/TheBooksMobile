@@ -110,7 +110,7 @@ const Profile = () => {
         </View>
       </View>
       <ScrollView style={{ marginHorizontal: 20 }} showsVerticalScrollIndicator={false}>
-        {types.map((type, key) => {
+        {types.map((type) => {
           return <Type key={type.id} />;
         })}
       </ScrollView>

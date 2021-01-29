@@ -6,7 +6,7 @@ import { DATA } from '../../assets/DATA';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Type = ({ title }) => {
-  //   item.authors[0].name
+  // item.authors[0].name
   // item.medias[0]
   // item.title
   // item.totalReview

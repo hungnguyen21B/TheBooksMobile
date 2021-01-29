@@ -3,6 +3,9 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import Fonts from '../../themes/Fonts';
 import Colors from '../../themes/Colors';
 import IconStar from './IconStar';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import getBookDetailActions from '../../redux/DetailRedux/actions';
 const HomeBookItem = (props) => {
   var iconRatings = [];
 
@@ -12,18 +15,25 @@ const HomeBookItem = (props) => {
   for (let i = 0; i < 5 - props.item.rating; i++) {
     iconRatings.push(<IconStar color={Colors.greyAuthor} />);
   }
+  const dispatch = useDispatch();
+  const onBookClicked = (id) => {
+    // dispatch(getBookDetailActions.getBookDetails(id));
+    console.log('Clicked');
+  };
   return (
-    <View style={[styles.container, props.style && props.style]}>
-      <View>
-        <Image source={{ uri: props.item.image }} style={styles.imgItem} />
+    <TouchableOpacity onPress={() => onBookClicked(props.item.id)}>
+      <View style={[styles.container, props.style && props.style]}>
+        <View>
+          <Image source={{ uri: props.item.image }} style={styles.imgItem} />
+        </View>
+        <Text style={styles.txtNameBook}>{props.item.name}</Text>
+        <Text style={styles.txtAuthor}>{props.item.author}</Text>
+        <View style={styles.containerBottom}>
+          <View style={styles.containerRating}>{iconRatings}</View>
+          <Text style={styles.txtNumberBuyer}>{props.item.numberBuyer}</Text>
+        </View>
       </View>
-      <Text style={styles.txtNameBook}>{props.item.name}</Text>
-      <Text style={styles.txtAuthor}>{props.item.author}</Text>
-      <View style={styles.containerBottom}>
-        <View style={styles.containerRating}>{iconRatings}</View>
-        <Text style={styles.txtNumberBuyer}>{props.item.numberBuyer}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
