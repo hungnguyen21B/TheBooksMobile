@@ -1,29 +1,38 @@
-import { takeLatest, put, call } from 'redux-saga/effects';
-import { HomeTypes, getBookHomeFailure, getBookHomeSuccess } from './actions';
-import { getBooksApi } from '../../api/books';
-export function* getBookHomeSaga() {
+import { takeLatest, put, call, select, take } from 'redux-saga/effects';
+import { CategoriesTypes, getCategoriesFailure, getCategoriesSuccess } from './actions';
+import { getCategoriesApi } from '../../api/categories';
+import { NavigationUtils } from '../../navigation';
+
+// function* waitFor(selector) {
+//   if (yield select(selector)) {
+//     return;
+//   } // (1)
+
+//   while (true) {
+//     yield take('*'); // (1a)
+//     if (yield select(selector)) {
+//       return;
+//     } // (1b)
+//   }
+// }
+
+export function* getCategoriesSaga() {
   try {
-    const response = yield call(getBooksApi);
+    const response = yield call(getCategoriesApi);
     const newResponse = {
-      data: response.data.books,
+      data: response.data,
     };
     console.log(newResponse.data);
-    // item.authors[0].name
-    // item.medias[0]
-    // item.title
-    // item.totalReview
-    // item.overallStarRating
-    //item.price
-    //item.quantity
-    yield put(getBookHomeSuccess(newResponse));
+    yield put(getCategoriesSuccess(newResponse));
+    // yield call(waitFor, (state) => state.category.dataCategories != null);
   } catch (error) {
     console.log(error);
-    yield put(getBookHomeFailure(error));
+    yield put(getCategoriesFailure(error));
   }
 }
 
-const homeSagas = () => {
-  return [takeLatest(HomeTypes.GET_BOOK_HOME, getBookHomeSaga)];
+const categoriesSagas = () => {
+  return [takeLatest(CategoriesTypes.GET_BOOK_HOME, getCategoriesSaga)];
 };
 
-export default homeSagas();
+export default categoriesSagas();

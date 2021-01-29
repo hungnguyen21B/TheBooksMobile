@@ -1,13 +1,13 @@
 import { makeActionCreator, makeConstantCreator } from '../../utils/ReduxUtils';
 
-export const HomeTypes = makeConstantCreator(
-  'GET_BOOK_HOME',
-  'GET_BOOK_HOME_SUCCESS',
-  'GET_BOOK_HOME_FAILURE',
+export const CategoriesTypes = makeConstantCreator(
+  'GET_CATEGORIES',
+  'GET_CATEGORIES_SUCCESS',
+  'GET_CATEGORIES_FAILURE',
 );
 
-export const getBookHome = () => makeActionCreator(HomeTypes.GET_BOOK_HOME);
-export const getBookHomeSuccess = (response) =>
-  makeActionCreator(HomeTypes.GET_BOOK_HOME_SUCCESS, { response });
-export const getBookHomeFailure = (error) =>
-  makeActionCreator(HomeTypes.GET_BOOK_HOME_FAILURE, { error });
+export const getCategories = () => makeActionCreator(CategoriesTypes.GET_CATEGORIES);
+export const getCategoriesSuccess = (response) =>
+  makeActionCreator(CategoriesTypes.GET_CATEGORIES_SUCCESS, { response });
+export const getCategoriesFailure = (error) =>
+  makeActionCreator(CategoriesTypes.GET_CATEGORIES_FAILURE, { error });
