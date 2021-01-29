@@ -7,7 +7,7 @@ import IconStar from './IconStar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import getBookDetailActions from '../../redux/DetailRedux/actions';
-import { NavigationUtils } from '../../navigation/index';
+import getReviewActions from '../../redux/ReviewRedux/actions';
 
 const HomeBookItem = (props) => {
   var iconRatings = [];
@@ -21,6 +21,7 @@ const HomeBookItem = (props) => {
   const onBookClicked = (id) => {
     console.log(id);
     dispatch(getBookDetailActions.getBookDetails(id));
+    dispatch(getReviewActions.getReviews());
   };
   return (
     <TouchableOpacity onPress={() => onBookClicked(props.item.id)}>

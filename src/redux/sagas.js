@@ -5,6 +5,7 @@ import signUpSagas from './SignUpRedux/sagas';
 import homeSagas from './HomeRedux/sagas';
 import getBookDetailSaga from './DetailRedux/sagas';
 import profileSaga from './UserRedux/sagas';
+import getReviewSaga from './ReviewRedux/sagas';
 export default function* root() {
   yield all([
     ...appSagas,
@@ -13,5 +14,6 @@ export default function* root() {
     ...homeSagas,
     ...getBookDetailSaga,
     ...profileSaga,
+    ...getReviewSaga,
   ]);
 }

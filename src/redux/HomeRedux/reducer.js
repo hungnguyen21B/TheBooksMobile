@@ -5,7 +5,6 @@ import { HomeTypes } from './actions';
 export const INITIAL_STATE = Immutable({
   dataBook: null,
   errorHome: false,
-
 });
 
 export const getBookHomeSuccess = (state, { response }) =>

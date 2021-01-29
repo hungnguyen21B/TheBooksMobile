@@ -4,6 +4,7 @@ import signUp from './SignUpRedux/reducer';
 import home from './HomeRedux/reducer';
 import bookDetails from './DetailRedux/reducer';
 import profile from './UserRedux/reducer';
+import reviews from './ReviewRedux/reducer';
 export default {
   app,
   login,
@@ -11,4 +12,5 @@ export default {
   home,
   bookDetails,
   profile,
+  reviews,
 };
