@@ -12,11 +12,12 @@ const Type = ({ title }) => {
   // item.totalReview
   // item.overallStarRating
   const listBooks = useSelector((state) => state.home.dataBook);
-  // const dispatch = useDispatch();
+
   console.log('listBooks: ');
   console.log(listBooks);
+
   const data = [];
-  for (let i = 0; i < listBooks.length; i++) {
+  for (let i = 0; i < Object.keys(listBooks).length; i++) {
     data.push({
       id: listBooks[i].id,
       image: listBooks[i].medias[0],

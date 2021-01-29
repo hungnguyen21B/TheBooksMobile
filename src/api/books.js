@@ -3,5 +3,5 @@ export async function getBooksApi() {
   return http.get('/api/books');
 }
 export async function getBookDetails(data) {
-  return http.get('/api/books', data);
+  return http.get('/api/books/' + data);
 }

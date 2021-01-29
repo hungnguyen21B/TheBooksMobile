@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Fonts from '../../themes/Fonts';
@@ -6,9 +7,10 @@ import IconStar from './IconStar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import getBookDetailActions from '../../redux/DetailRedux/actions';
+import { NavigationUtils } from '../../navigation/index';
+
 const HomeBookItem = (props) => {
   var iconRatings = [];
-
   for (let i = 0; i < props.item.rating; i++) {
     iconRatings.push(<IconStar color={Colors.primary} />);
   }
@@ -17,14 +19,22 @@ const HomeBookItem = (props) => {
   }
   const dispatch = useDispatch();
   const onBookClicked = (id) => {
-    // dispatch(getBookDetailActions.getBookDetails(id));
-    console.log('Clicked');
+    console.log(id);
+    dispatch(getBookDetailActions.getBookDetails(id));
+    NavigationUtils.push({
+      screen: 'Detail',
+      passProps: { fromLogin: true },
+      isTopBarEnable: false,
+    });
   };
   return (
     <TouchableOpacity onPress={() => onBookClicked(props.item.id)}>
       <View style={[styles.container, props.style && props.style]}>
         <View>
-          <Image source={{ uri: props.item.image }} style={styles.imgItem} />
+          <Image
+            source={{ uri: props.item.image }}
+            style={[styles.imgItem, props.style && { width: 130, height: 160 }]}
+          />
         </View>
         <Text style={styles.txtNameBook}>{props.item.name}</Text>
         <Text style={styles.txtAuthor}>{props.item.author}</Text>
@@ -45,7 +55,7 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   imgItem: {
-    width: 110,
+    width: 115,
     height: 160,
     borderRadius: 1.5,
     shadowColor: 'rgba(0, 0, 0, 0.22)',

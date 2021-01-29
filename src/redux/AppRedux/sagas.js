@@ -1,8 +1,22 @@
-import { takeLatest, select, put } from 'redux-saga/effects';
+import { takeLatest, select, put, call, take } from 'redux-saga/effects';
 import { AppTypes } from './actions';
 import http from '../../api/http';
 import { NavigationUtils } from '../../navigation';
 import { getBookHome } from '../HomeRedux/actions';
+
+function* waitFor(selector) {
+  if (yield select(selector)) {
+    return;
+  } // (1)
+
+  while (true) {
+    yield take('*'); // (1a)
+    if (yield select(selector)) {
+      return;
+    } // (1b)
+  }
+}
+
 export function* startupSaga() {
   try {
     // call api
@@ -13,6 +27,7 @@ export function* startupSaga() {
     //
     if (token) {
       yield put(getBookHome());
+      yield call(waitFor, (state) => state.home.dataBook != null);
       NavigationUtils.startMainContent();
     } else {
       if (isSkip) {
