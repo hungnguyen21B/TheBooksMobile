@@ -18,7 +18,6 @@ const WIDTH = window.width;
 var { width } = Dimensions.get('window');
 var box_width = width / 3;
 var box = width / 2;
-
 const Profile = () => {
   const [isRow, setRow] = useState(true);
   const [isColumn, setColumn] = useState(false);
@@ -39,7 +38,7 @@ const Profile = () => {
         <TouchableOpacity style={styles.buttonIcon}>
           <Icon name="ic-photo" size={20} color="white" style={styles.iconPhoto} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonIcon} onPress={onSettingProfile}>
+        <TouchableOpacity style={styles.buttonIcon} onPress={() => onSettingProfile()}>
           <Icon name="ic-setting" size={20} color="white" style={styles.iconSetting} />
         </TouchableOpacity>
       </View>
