@@ -16,6 +16,8 @@ import Notice from '../screens/Notice';
 import Bill from '../screens/Bill';
 import Library from '../screens/Library';
 import Profile from '../screens/Profile';
+import Filter from '../screens/Filter';
+
 import SettingProfile from '../screens/Profile/SettingProfile';
 import { RNNDrawer } from 'react-native-navigation-drawer-extension';
 const SCREENS_WITH_REDUX = {
@@ -32,6 +34,7 @@ const SCREENS_WITH_REDUX = {
   Library,
   Profile,
   SettingProfile,
+  Filter,
 };
 const SCREENS = {};
 

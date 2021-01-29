@@ -26,7 +26,6 @@ const Profile = () => {
   const types = [
     {
       id: '1',
-      name: 'Đọc nhiềuu',
     },
   ];
 

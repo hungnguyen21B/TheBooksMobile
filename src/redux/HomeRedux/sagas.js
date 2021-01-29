@@ -7,7 +7,7 @@ export function* getBookHomeSaga() {
     const newResponse = {
       data: response.data.books,
     };
-    console.log(newResponse.data);
+    console.log(newResponse.data, 'hoang456');
     // item.authors[0].name
     // item.medias[0]
     // item.title

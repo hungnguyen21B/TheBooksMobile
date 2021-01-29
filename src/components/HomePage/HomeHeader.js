@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/thebook-appicon';
 import Colors from '../../themes/Colors';
 import Fonts from '../../themes/Fonts';
 import { RNNDrawer } from 'react-native-navigation-drawer-extension';
+import { NavigationUtils } from '../../navigation';
 const HomeHeader = () => {
   return (
     <View style={styles.container}>
@@ -36,7 +37,10 @@ const HomeHeader = () => {
       >
         <Icon size={Fonts.size.s16} name="ic-menu" color={Colors.blackIcon} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.tboIcon}>
+      <TouchableOpacity
+        style={styles.tboIcon}
+        onPress={() => NavigationUtils.push({ screen: 'Filter', isTopBarEnable: true })}
+      >
         <Icon size={Fonts.size.s16} name="ic-search" color={Colors.blackIcon} />
       </TouchableOpacity>
     </View>

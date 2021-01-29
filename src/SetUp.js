@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navigation } from 'react-native-navigation';
+
 import { Alert } from 'react-native';
 import { registerScreens } from './navigation/index';
 import configureStore from './redux/store';

@@ -5,19 +5,18 @@ import TypeHeader from './TypeHeader';
 import { DATA } from '../../assets/DATA';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Type = ({ title }) => {
+const Type = ({ title, style }) => {
   // item.authors[0].name
   // item.medias[0]
   // item.title
   // item.totalReview
   // item.overallStarRating
-  const listBooks = useSelector((state) => state.home.dataBook);
-
+  const listBooks = useSelector((state) => state.home.dataBook.data);
+  // const dispatch = useDispatch();
   console.log('listBooks: ');
   console.log(listBooks);
-
   const data = [];
-  for (let i = 0; i < listBooks.length; i++) {
+  for (let i = 0; i < Object.keys(listBooks).length; i++) {
     data.push({
       id: listBooks[i].id,
       image: listBooks[i].medias[0],
@@ -33,7 +32,7 @@ const Type = ({ title }) => {
       <ScrollView
         showsHorizontalScrollIndicator={false}
         horizontal={true}
-        style={styles.scvContainer}
+        style={[styles.scvContainer, style && style]}
       >
         {data.map((item) => {
           return <HomeBookItem item={item} key={item.id} />;
