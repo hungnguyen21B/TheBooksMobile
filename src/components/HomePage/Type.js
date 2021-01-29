@@ -12,11 +12,10 @@ const Type = ({ title }) => {
   // item.totalReview
   // item.overallStarRating
   const listBooks = useSelector((state) => state.home.dataBook);
-  // const dispatch = useDispatch();
+
   console.log('listBooks: ');
   console.log(listBooks);
-  console.log('   listBooksLength: ');
-  console.log(Object.keys(listBooks).length);
+
   const data = [];
   for (let i = 0; i < listBooks.length; i++) {
     data.push({
