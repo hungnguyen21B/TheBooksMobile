@@ -13,9 +13,10 @@ import { NavigationUtils } from '../../navigation';
 
 const Detail = () => {
   const bookDetails = useSelector((state) => state.bookDetails.getBookDetailsResponse);
-  console.log('booksDetails: ' + bookDetails.price);
+  var reviews = useSelector((state) => state.reviews.getReviewsResponse.reviews);
+  console.log(' reviews = ' + bookDetails.id);
+  reviews = reviews.filter((item) => item.bookId === bookDetails.id);
   var iconRatings = [];
-
   for (let i = 0; i < 4; i++) {
     iconRatings.push(<IconStar color={Colors.primary} />);
   }
@@ -85,18 +86,18 @@ const Detail = () => {
         </TouchableOpacity>
       </View>
 
-      <EvaluateItem
-        author="Kim Dung"
-        star={4}
-        isFirst={true}
-        content="Sách hay, cần có thêm nhiều đầu sách như vậy hơn nữa để tuổi trẻ bớt bị tẩy não. Ghi hoài mà nó không đủ 3 dòng, mệt."
-      />
-      <EvaluateItem
-        author="Kim Dung"
-        star={3}
-        isFirst={false}
-        content="Sách hay, cần có thêm nhiều đầu sách như vậy hơn nữa để tuổi trẻ bớt bị tẩy não. Ghi hoài mà nó không đủ 3 dòng, mệt."
-      />
+      {reviews.map((item, key) => {
+        return key === 0 ? (
+          <EvaluateItem author={item.userName} star={4} isFirst={true} content={item.content} />
+        ) : (
+          <EvaluateItem
+            author={item.userName}
+            star={item.starRating}
+            isFirst={false}
+            content={item.content}
+          />
+        );
+      })}
 
       <View>
         <TouchableOpacity style={styles.viewAllEvaluate}>
