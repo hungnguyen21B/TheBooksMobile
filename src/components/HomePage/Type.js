@@ -6,7 +6,7 @@ import { DATA } from '../../assets/DATA';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Type = ({ title }) => {
-  //   item.authors[0].name
+  // item.authors[0].name
   // item.medias[0]
   // item.title
   // item.totalReview
@@ -15,8 +15,10 @@ const Type = ({ title }) => {
   // const dispatch = useDispatch();
   console.log('listBooks: ');
   console.log(listBooks);
+  console.log('   listBooksLength: ');
+  console.log(Object.keys(listBooks).length);
   const data = [];
-  for (let i = 0; i < listBooks.length; i++) {
+  for (let i = 0; i < Object.keys(listBooks).length; i++) {
     data.push({
       id: listBooks[i].id,
       image: listBooks[i].medias[0],

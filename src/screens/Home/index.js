@@ -6,19 +6,19 @@ import Type from '../../components/HomePage/Type';
 const HomePage = () => {
   const types = [
     {
-      id: '1',
+      id: '1ad',
       name: 'Đọc nhiềuu',
     },
     {
-      id: '2',
+      id: '2dasd',
       name: 'Sách mới',
     },
     {
-      id: '3',
+      id: 'das3',
       name: 'Sách mượn nhiều',
     },
     {
-      id: '4',
+      id: 'sad4',
       name: 'Sách được yêu thích',
     },
   ];

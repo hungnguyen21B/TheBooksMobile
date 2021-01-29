@@ -41,7 +41,7 @@ const Orders = () => {
         <Text style={styles.title}>Danh sách đơn hàng</Text>
       </View>
       {listOrders.map((item) => {
-        return <OrderInfo item={item} />;
+        return <OrderInfo item={item} key={item.id} />;
       })}
     </View>
   );
