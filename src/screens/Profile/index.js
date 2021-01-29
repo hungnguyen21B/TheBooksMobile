@@ -17,18 +17,15 @@ const WIDTH = window.width;
 var { width } = Dimensions.get('window');
 var box_width = width / 3;
 var box = width / 2;
-const clickH = () => {
-  return true;
-};
 const types = [
   {
     id: '1',
   },
 ];
-const onSettingProfile = () => {
-  NavigationUtils.push({ screen: 'SettingProfile', title: 'Cài đặt thông tin' });
-};
 const Profile = () => {
+  const onSettingProfile = () => {
+    NavigationUtils.push({ screen: 'SettingProfile', title: 'Cài đặt thông tin' });
+  };
   const [isRow, setRow] = useState(true);
   const [isColumn, setColumn] = useState(false);
   return (
@@ -37,7 +34,7 @@ const Profile = () => {
         <TouchableOpacity style={styles.buttonIcon}>
           <Icon name="ic-photo" size={20} color="white" style={styles.iconPhoto} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonIcon} onPress={onSettingProfile}>
+        <TouchableOpacity style={styles.buttonIcon} onPress={() => onSettingProfile()}>
           <Icon name="ic-setting" size={20} color="white" style={styles.iconSetting} />
         </TouchableOpacity>
       </View>
@@ -109,11 +106,11 @@ const Profile = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <ScrollView style={{ marginHorizontal: 20 }} showsVerticalScrollIndicator={false}>
-        {types.map((type, key) => {
+      {/* <ScrollView style={{ marginHorizontal: 20 }} showsVerticalScrollIndicator={false}>
+        {types.map((type) => {
           return <Type key={type.id} />;
         })}
-      </ScrollView>
+      </ScrollView> */}
     </ScrollView>
   );
 };
