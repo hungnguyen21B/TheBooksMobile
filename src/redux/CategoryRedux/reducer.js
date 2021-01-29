@@ -1,21 +1,21 @@
 import Immutable from 'seamless-immutable';
 import { makeReducerCreator } from '../../utils/ReduxUtils';
-import { HomeTypes } from './actions';
+import { CategoriesTypes } from './actions';
 
 export const INITIAL_STATE = Immutable({
-  dataBook: null,
-  errorHome: false,
+  dataCategory: null,
+  errorCategories: false,
 });
-export const getBookHomeSuccess = (state, { response }) =>
+export const getCategoriesSuccess = (state, { response }) =>
   state.merge({
-    dataBook: response.data,
-    errorHome: false,
+    dataCategory: response.data,
+    errorCategories: false,
   });
-export const getBookHomeFailure = (state, { error }) => state.merge({ errorHome: error });
+export const getCategoriesFailure = (state, { error }) => state.merge({ errorCategories: error });
 
 const reducer = makeReducerCreator(INITIAL_STATE, {
-  [HomeTypes.GET_BOOK_HOME_SUCCESS]: getBookHomeSuccess,
-  [HomeTypes.GET_BOOK_HOME_FAILURE]: getBookHomeFailure,
+  [CategoriesTypes.GET_CATEGORIES_SUCCESS]: getCategoriesSuccess,
+  [CategoriesTypes.GET_CATEGORIES_FAILURE]: getCategoriesFailure,
 });
 
 export default reducer;

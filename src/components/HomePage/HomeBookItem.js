@@ -1,8 +1,13 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Fonts from '../../themes/Fonts';
 import Colors from '../../themes/Colors';
 import IconStar from './IconStar';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import getBookDetailActions from '../../redux/DetailRedux/actions';
+import { NavigationUtils } from '../../navigation/index';
 
 const HomeBookItem = (props) => {
   var iconRatings = [];
@@ -12,22 +17,30 @@ const HomeBookItem = (props) => {
   for (let i = 0; i < 5 - props.item.rating; i++) {
     iconRatings.push(<IconStar color={Colors.greyAuthor} />);
   }
-
+  const dispatch = useDispatch();
+  const onBookClicked = (id) => {
+    console.log(id);
+    dispatch(getBookDetailActions.getBookDetails(id));
+  };
   return (
-    <View style={[styles.container, props.style && props.style]}>
-      <View>
-        <Image
-          source={{ uri: props.item.image }}
-          style={[styles.imgItem, props.style && { width: 130, height: 160 }]}
-        />
+    <TouchableOpacity onPress={() => onBookClicked(props.item.id)}>
+      <View style={[styles.container, props.style && props.style]}>
+        <View>
+          <Image
+            source={{ uri: props.item.image }}
+            style={[styles.imgItem, props.style && { width: 130, height: 160 }]}
+          />
+        </View>
+        <Text style={styles.txtNameBook} numberOfLines={2}>
+          {props.item.name}
+        </Text>
+        <Text style={styles.txtAuthor}>{props.item.author}</Text>
+        <View style={styles.containerBottom}>
+          <View style={styles.containerRating}>{iconRatings}</View>
+          <Text style={styles.txtNumberBuyer}>{props.item.numberBuyer}</Text>
+        </View>
       </View>
-      <Text style={styles.txtNameBook}>{props.item.name}</Text>
-      <Text style={styles.txtAuthor}>{props.item.author}</Text>
-      <View style={styles.containerBottom}>
-        <View style={styles.containerRating}>{iconRatings}</View>
-        <Text style={styles.txtNumberBuyer}>{props.item.numberBuyer}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
