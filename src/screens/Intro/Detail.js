@@ -26,6 +26,7 @@ const Detail = () => {
   const types = [
     {
       id: '1',
+      name: 'Sách tương tự',
     },
   ];
 
@@ -72,16 +73,9 @@ const Detail = () => {
       </View>
 
       <View style={styles.listScroll}>
-        <View style={styles.titleContent}>
-          <Text style={styles.title}>Sách tương tự</Text>
-          <Text style={styles.viewAll}>xem hết</Text>
-        </View>
-
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {types.map((type) => {
-            return <Type title={type.name} key={type.id} />;
-          })}
-        </ScrollView>
+        {types.map((type) => {
+          return <Type title={type.name} key={type.id} />;
+        })}
       </View>
 
       <View style={styles.evaluateContent}>

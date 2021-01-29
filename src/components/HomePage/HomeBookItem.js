@@ -21,11 +21,6 @@ const HomeBookItem = (props) => {
   const onBookClicked = (id) => {
     console.log(id);
     dispatch(getBookDetailActions.getBookDetails(id));
-    NavigationUtils.push({
-      screen: 'Detail',
-      passProps: { fromLogin: true },
-      isTopBarEnable: false,
-    });
   };
   return (
     <TouchableOpacity onPress={() => onBookClicked(props.item.id)}>
@@ -36,7 +31,9 @@ const HomeBookItem = (props) => {
             style={[styles.imgItem, props.style && { width: 130, height: 160 }]}
           />
         </View>
-        <Text style={styles.txtNameBook}>{props.item.name}</Text>
+        <Text style={styles.txtNameBook} numberOfLines={2}>
+          {props.item.name}
+        </Text>
         <Text style={styles.txtAuthor}>{props.item.author}</Text>
         <View style={styles.containerBottom}>
           <View style={styles.containerRating}>{iconRatings}</View>
