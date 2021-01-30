@@ -8,15 +8,14 @@ import Icon from 'react-native-vector-icons/thebook-appicon';
 
 const BookDetailItem = (props) => {
   const SCREEN_WIDTH = Dimensions.get('screen').width;
-
   var iconRatings = [];
+
   for (let i = 0; i < 4; i++) {
     iconRatings.push(<IconStar color={Colors.primary} size={13} />);
   }
   for (let i = 0; i < 5 - 4; i++) {
     iconRatings.push(<IconStar color={Colors.greyAuthor} size={13} />);
   }
-
   return (
     <View>
       <View style={styles.content}>
@@ -32,7 +31,9 @@ const BookDetailItem = (props) => {
           <View style={{ marginLeft: SCREEN_WIDTH - 145 }}>
             <Icon name="ic-delete" size={10} color={Colors.blackIcon} />
           </View>
-          <Text style={styles.nameBook}>{props.item.book.title}</Text>
+          <Text style={styles.nameBook} numberOfLines={2}>
+            {props.item.book.title}
+          </Text>
           <Text style={styles.nameAuthor}>{props.item.book.authors[0].name}</Text>
           <View style={styles.starRating}>
             <View style={styles.star}>{iconRatings}</View>
@@ -72,13 +73,13 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   detail: {
-    marginLeft: 24,
+    marginLeft: 5,
   },
   nameBook: {
     fontFamily: 'SVN-ProximaNova',
     fontSize: 16,
     color: '#4a4a4a',
-    marginTop: 11,
+    marginTop: 4,
   },
   nameAuthor: {
     fontFamily: 'SVN-ProximaNova',
