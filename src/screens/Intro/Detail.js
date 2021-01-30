@@ -7,14 +7,16 @@ import EvaluateItem from '../../components/EvaluateItem';
 import Colors from '../../themes/Colors';
 import IconStar from '../../components/HomePage/IconStar';
 import AwesomeAlert from 'react-native-awesome-alerts';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Type from '../../components/HomePage/Type';
 import { NavigationUtils } from '../../navigation';
+import getCartActions from '../../redux/CartRedux/actions';
 
 const Detail = () => {
+  const dispatch = useDispatch();
   const bookDetails = useSelector((state) => state.bookDetails.getBookDetailsResponse);
   var reviews = useSelector((state) => state.reviews.getReviewsResponse.reviews);
-  console.log(' reviews = ' + bookDetails.id);
+  // console.log(' reviews = ' + bookDetails.id);
   reviews = reviews.filter((item) => item.bookId === bookDetails.id);
   var iconRatings = [];
   for (let i = 0; i < 4; i++) {
@@ -31,16 +33,33 @@ const Detail = () => {
     },
   ];
 
+  const onIconCartClicked = () => {
+    dispatch(getCartActions.getCart());
+    NavigationUtils.push({
+      screen: 'Cart',
+      passProps: { fromLogin: true },
+      isTopBarEnable: false,
+    });
+  };
+
   const [showAlert, setShowAlert] = useState(false);
   return (
     <ScrollView>
       <View style={styles.iconHeader}>
         <TouchableOpacity onPress={() => NavigationUtils.pop()}>
-          <Icon name="ic-back" size={13} />
+          <Icon name="ic-back" size={18} />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Icon name="ic-like-pre" size={13} />
-        </TouchableOpacity>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity>
+            <Icon name="ic-like-pre" size={18} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconContain} onPress={() => onIconCartClicked()}>
+            <Icon name="ic-cart" size={18} />
+            <View style={styles.iconCart}>
+              <Text style={styles.quantityNumber}>2</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.imgContainer}>
         <Image source={{ uri: bookDetails.medias[0] }} style={styles.imgDetail} />
@@ -135,6 +154,25 @@ Bạn có muốn nhận thông báo ngay khi có lại"
 };
 
 const styles = StyleSheet.create({
+  iconCart: {
+    backgroundColor: 'red',
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: -6,
+    marginTop: -6,
+  },
+  quantityNumber: {
+    color: 'white',
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+  iconContain: {
+    marginLeft: 10,
+    flexDirection: 'row',
+  },
   imgContainer: {
     justifyContent: 'center',
     alignItems: 'center',

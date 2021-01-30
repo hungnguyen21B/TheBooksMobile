@@ -5,6 +5,7 @@ import home from './HomeRedux/reducer';
 import bookDetails from './DetailRedux/reducer';
 import profile from './UserRedux/reducer';
 import reviews from './ReviewRedux/reducer';
+import cart from './CartRedux/reducer';
 export default {
   app,
   login,
@@ -13,4 +14,5 @@ export default {
   bookDetails,
   profile,
   reviews,
+  cart,
 };

@@ -7,43 +7,26 @@ import BookDetailItem from '../../components/Cart/BookDetailItem';
 import Colors from '../../themes/Colors';
 import Icon from 'react-native-vector-icons/thebook-appicon';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { useSelector } from 'react-redux';
+import { NavigationUtils } from '../../navigation';
 
 const Cart = () => {
-  const listBooks = [
-    {
-      id: '1',
-      image:
-        'https://media.wired.com/photos/5be4cd03db23f3775e466767/125:94/w_2375,h_1786,c_limit/books-521812297.jpg',
-      name: 'Tên bạn là gì ?',
-      author: 'Shinkai Makolo',
-      rating: 3,
-      numberBuyer: 324,
-      quantity: 0,
-      price: 36000,
-    },
-    {
-      id: '2',
-      image:
-        'https://media.wired.com/photos/5be4cd03db23f3775e466767/125:94/w_2375,h_1786,c_limit/books-521812297.jpg',
-      name: 'Một lít nước mắt',
-      author: 'Kito aya',
-      rating: 4,
-      numberBuyer: 53,
-      quantity: 4,
-      price: 36000,
-    },
-  ];
-
+  var listBook = useSelector((state) => state.cart.getCartResponse);
+  const items = listBook.data.items;
   const [showAlert, setShowAlert] = useState(false);
   return (
     <View style={styles.mainContainer}>
       <ScrollView style={styles.container}>
         <View style={styles.header}>
-          <Icon name="ic-back" size={13} color={Colors.blackIcon} />
+          <TouchableOpacity onPress={() => NavigationUtils.pop()}>
+            <Icon name="ic-back" size={13} color={Colors.blackIcon} />
+          </TouchableOpacity>
           <Text style={styles.title}>Giỏ hàng</Text>
-          <Icon name="ic-trash" size={13} color={Colors.blackIcon} />
+          <TouchableOpacity>
+            <Icon name="ic-trash" size={13} color={Colors.blackIcon} />
+          </TouchableOpacity>
         </View>
-        {listBooks.map((item, key) => {
+        {items.map((item, key) => {
           return <BookDetailItem item={item} key={key} />;
         })}
       </ScrollView>
