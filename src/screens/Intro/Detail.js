@@ -10,13 +10,13 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import { useDispatch, useSelector } from 'react-redux';
 import Type from '../../components/HomePage/Type';
 import { NavigationUtils } from '../../navigation';
-import getCartActions from '../../redux/CartRedux/actions';
+import cartActions from '../../redux/CartRedux/actions';
 
 const Detail = () => {
   const dispatch = useDispatch();
   const bookDetails = useSelector((state) => state.bookDetails.getBookDetailsResponse);
+  const user = useSelector((state) => state.login.loginResponse.user);
   var reviews = useSelector((state) => state.reviews.getReviewsResponse.reviews);
-  // console.log(' reviews = ' + bookDetails.id);
   reviews = reviews.filter((item) => item.bookId === bookDetails.id);
   var iconRatings = [];
   for (let i = 0; i < 4; i++) {
@@ -34,12 +34,18 @@ const Detail = () => {
   ];
 
   const onIconCartClicked = () => {
-    dispatch(getCartActions.getCart());
-    NavigationUtils.push({
-      screen: 'Cart',
-      passProps: { fromLogin: true },
-      isTopBarEnable: false,
-    });
+    dispatch(cartActions.getCart());
+  };
+
+  const onAddToCart = () => {
+    const data = {
+      bookId: bookDetails.id,
+      quantity: 1,
+      userId: user.id,
+    };
+
+    dispatch(cartActions.addToCart(data));
+    setShowAlert(true);
   };
 
   const [showAlert, setShowAlert] = useState(false);
@@ -125,7 +131,8 @@ const Detail = () => {
       </View>
 
       <View style={styles.addToCartContainer}>
-        <TouchableOpacity style={styles.addToCart} onPress={() => setShowAlert(true)}>
+        {/* <TouchableOpacity style={styles.addToCart} onPress={() => setShowAlert(true)}> */}
+        <TouchableOpacity style={styles.addToCart} onPress={() => onAddToCart()}>
           <Text style={styles.textAddToCart}>Thêm vào giỏ</Text>
         </TouchableOpacity>
       </View>

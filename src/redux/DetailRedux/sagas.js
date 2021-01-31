@@ -1,7 +1,6 @@
 import { put, call, takeLatest, select, take } from 'redux-saga/effects';
 import getBookDetailActions, { getBookDetailTypes } from './actions';
 import { getBookDetails } from '../../api/books';
-import { NavigationUtils } from '../../navigation';
 
 //Get book details
 function* waitFor(selector) {
@@ -16,21 +15,19 @@ function* waitFor(selector) {
     } // (1b)
   }
 }
-
 export function* getBookDetailsSaga({ id }) {
   try {
     const response = yield call(getBookDetails, id);
     const newResponse = {
       data: response.data,
     };
-    console.log('Hello' + response);
     yield put(getBookDetailActions.getBookDetailsSuccess(newResponse));
     yield call(waitFor, (state) => state.bookDetails.getBookDetailsResponse != null);
-    NavigationUtils.push({
-      screen: 'Detail',
-      passProps: { fromLogin: true },
-      isTopBarEnable: false,
-    });
+    // NavigationUtils.push({
+    //   screen: 'Detail',
+    //   passProps: { fromLogin: true },
+    //   isTopBarEnable: false,
+    // });
   } catch (error) {
     console.log('Error: ' + error);
     yield put(getBookDetailActions.getBookDetailsFailure(error));

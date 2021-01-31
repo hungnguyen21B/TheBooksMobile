@@ -43,7 +43,7 @@ const BookDetailItem = (props) => {
           <View style={styles.footerContent}>
             <View style={styles.quantityContainer}>
               <Icon name="ic-book-1" size={13} color={Colors.primary} />
-              {props.item.quantity === 0 ? (
+              {props.item.book.quantity === 0 ? (
                 <Text style={[{}, styles.quantity, { color: Colors.primary }]}>hết sách</Text>
               ) : (
                 <Text style={styles.quantity}>{props.item.book.quantity} quyển</Text>
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#4a4a4a',
     marginTop: 4,
+    marginRight: 100,
   },
   nameAuthor: {
     fontFamily: 'SVN-ProximaNova',

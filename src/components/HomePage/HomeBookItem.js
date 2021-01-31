@@ -5,7 +5,7 @@ import Fonts from '../../themes/Fonts';
 import Colors from '../../themes/Colors';
 import IconStar from './IconStar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import getBookDetailActions from '../../redux/DetailRedux/actions';
 import getReviewActions from '../../redux/ReviewRedux/actions';
 

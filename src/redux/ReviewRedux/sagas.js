@@ -1,6 +1,7 @@
 import { put, call, takeLatest, select, take } from 'redux-saga/effects';
 import getReviewActions, { getReviewTypes } from './actions';
 import { getReviews } from '../../api/books';
+import { NavigationUtils } from '../../navigation';
 
 //Get reviews
 function* waitFor(selector) {
@@ -24,6 +25,11 @@ export function* getReviewsSaga() {
     };
     yield put(getReviewActions.getReviewsSuccess(newResponse));
     yield call(waitFor, (state) => state.reviews.getReviewsResponse != null);
+    NavigationUtils.push({
+      screen: 'Detail',
+      passProps: { fromLogin: true },
+      isTopBarEnable: false,
+    });
   } catch (error) {
     console.log('Error: ' + error);
     yield put(getReviewActions.getReviewsFailure(error));
