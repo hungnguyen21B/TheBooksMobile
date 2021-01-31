@@ -7,6 +7,6 @@ export async function addToCart(data) {
   return http.post('/api/basket', data);
 }
 
-export async function deleteCartItem(data) {
-  return http.delete('/api/basket', data);
+export async function deleteItemInCart(data) {
+  return http.deleteItem('/api/basket', data);
 }

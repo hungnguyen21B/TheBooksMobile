@@ -72,6 +72,11 @@ const http = {
 
     return axios.delete(url, config);
   },
+  deleteItem(url, data = {}, config = {}) {
+    console.log(url);
+
+    return axios.delete(url, data, config);
+  },
   postUploadFile(url, data = {}) {
     let formData = new FormData();
     data.photos.forEach((photo) => {
