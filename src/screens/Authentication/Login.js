@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.layoutTitle}>
-        <Icon name="ic-delete" size={24} style={{ marginTop: 4 }} onPress={onClose} />
+        <Icon name="ic-delete" size={20} style={{ marginTop: 4 }} onPress={onClose} />
         <Text style={styles.title}> Đăng nhập </Text>
       </View>
       <TextInputItem title="Email" ChangeText={(val) => setEmail(val)} />

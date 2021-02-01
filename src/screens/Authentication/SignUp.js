@@ -73,7 +73,7 @@ const SignUp = (props) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.layoutTitle}>
-        <Icon name="ic-delete" size={24} style={{ marginTop: 4 }} onPress={onLogin} />
+        <Icon name="ic-delete" size={20} style={{ marginTop: 4 }} onPress={onLogin} />
         <Text style={styles.title}>Đăng ký</Text>
       </View>
       <TextInputItem title="Họ" ChangeText={(val) => setLastName(val)} />

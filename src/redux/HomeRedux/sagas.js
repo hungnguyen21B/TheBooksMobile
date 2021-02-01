@@ -16,6 +16,8 @@ export function* getBookHomeSaga() {
     //item.price
     //item.quantity
     yield put(getBookHomeSuccess(newResponse));
+    // // console.log(response.user.id);
+    // yield put(ProfileTypes.userProfile('N3hYSeF0'));
   } catch (error) {
     console.log(error);
     yield put(getBookHomeFailure(error));

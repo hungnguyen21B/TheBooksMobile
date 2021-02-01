@@ -240,7 +240,7 @@ class NavigationUtils {
                           justifyContent: 'center',
                           iconWidth: 21,
                           iconHeight: 21,
-                          selectedIconColor: '#1d9dd8',
+                          //selectedIconColor: 'white',
                           icon: require('../assets/Images/avatar.jpg'),
                         },
                       },

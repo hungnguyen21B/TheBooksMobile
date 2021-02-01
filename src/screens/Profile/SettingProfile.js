@@ -1,5 +1,5 @@
-import { View } from 'react-native';
 import React from 'react';
+import { View } from 'react-native';
 import SettingProfileItem from '../../components/SettingProfileItem';
 import LoginTypes from '../../redux/LoginRedux/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +29,7 @@ const SettingProfile = (props) => {
         title="Thông tin cá nhân"
         press={() => onEditProfile()}
       />
-      <SettingProfileItem name="ic-password" title="Đổi mật khẩu"/>
+      <SettingProfileItem name="ic-password" title="Đổi mật khẩu" />
       <SettingProfileItem name="ic-help" title="Hỗ trợ" press={onProfile} />
       <SettingProfileItem name="ic-feedback" title="Phản hồi" />
       <SettingProfileItem name="ic-regulation" title="Quy định" />

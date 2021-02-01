@@ -13,8 +13,10 @@ import { NavigationUtils } from '../../navigation';
 import cartActions from '../../redux/CartRedux/actions';
 
 const Detail = () => {
+  const [message, setMessage] = useState('');
   const dispatch = useDispatch();
   const bookDetails = useSelector((state) => state.bookDetails.getBookDetailsResponse);
+  const cartResponse = useSelector((state) => state.cart);
   const user = useSelector((state) => state.login.loginResponse.user);
   var reviews = useSelector((state) => state.reviews.getReviewsResponse.reviews);
   reviews = reviews.filter((item) => item.bookId === bookDetails.id);
@@ -43,11 +45,19 @@ const Detail = () => {
       quantity: 1,
       userId: user.id,
     };
-
-    dispatch(cartActions.addToCart(data));
+    if (bookDetails.quantity <= 1) {
+      setMessage('Sách này hiện đã được mượn hết\n' + 'Bạn có muốn nhận thông báo ngay khi có lại');
+    } else {
+      dispatch(cartActions.addToCart(data));
+      if (cartResponse.errorAddToCart && cartResponse.errorAddToCart.status === 400) {
+        setMessage(cartResponse.errorAddToCart.data.message);
+      } else {
+        setMessage('Thêm vào giỏ hàng thành công.');
+      }
+    }
     setShowAlert(true);
   };
-
+  console.log(message);
   const [showAlert, setShowAlert] = useState(false);
   return (
     <ScrollView>
@@ -62,7 +72,9 @@ const Detail = () => {
           <TouchableOpacity style={styles.iconContain} onPress={() => onIconCartClicked()}>
             <Icon name="ic-cart" size={18} />
             <View style={styles.iconCart}>
-              <Text style={styles.quantityNumber}>2</Text>
+              <Text style={styles.quantityNumber}>
+                {cartResponse && cartResponse.getCartResponse.data.items.length}
+              </Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -139,8 +151,7 @@ const Detail = () => {
       <AwesomeAlert
         show={showAlert}
         showProgress={false}
-        message="Sách này hiện đã được mượn hết
-Bạn có muốn nhận thông báo ngay khi có lại"
+        message={message}
         closeOnTouchOutside={false}
         closeOnHardwareBackPress={false}
         showConfirmButton={true}

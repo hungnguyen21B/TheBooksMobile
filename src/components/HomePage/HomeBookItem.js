@@ -5,10 +5,10 @@ import Fonts from '../../themes/Fonts';
 import Colors from '../../themes/Colors';
 import IconStar from './IconStar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import getBookDetailActions from '../../redux/DetailRedux/actions';
 import getReviewActions from '../../redux/ReviewRedux/actions';
-
+import cartActions from '../../redux/CartRedux/actions';
 const HomeBookItem = (props) => {
   var iconRatings = [];
   for (let i = 0; i < props.item.rating; i++) {
@@ -22,6 +22,8 @@ const HomeBookItem = (props) => {
     console.log(id);
     dispatch(getBookDetailActions.getBookDetails(id));
     dispatch(getReviewActions.getReviews());
+    dispatch(cartActions.getCart());
+    //dispatch(ProfileTypes.userProfile(idUser));
   };
   return (
     <TouchableOpacity onPress={() => onBookClicked(props.item.id)}>

@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,11 +9,11 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
+import { useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/thebook-appicon';
 import Images from '../../themes/Images';
 import Type from '../../components/HomePage/Type';
 import { NavigationUtils } from '../../navigation';
-
 const WIDTH = window.width;
 var { width } = Dimensions.get('window');
 var box_width = width / 3;
@@ -21,16 +21,19 @@ var box = width / 2;
 const Profile = () => {
   const [isRow, setRow] = useState(true);
   const [isColumn, setColumn] = useState(false);
-
+  const user = useSelector((state) => state.profile.profileResponse);
   const types = [
     {
       id: '1',
     },
   ];
+  console.log("user ");
 
   const onSettingProfile = () => {
     NavigationUtils.push({ screen: 'SettingProfile', title: 'Cài đặt thông tin' });
   };
+  // dispatch(ProfileTypes.userProfile(idUser));
+  // console.log(user.email);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.headerIcon}>
@@ -43,7 +46,7 @@ const Profile = () => {
       </View>
       <Image source={Images.avatar} style={styles.avatarImage} />
       <View style={styles.nameView}>
-        <Text style={styles.name}>Hoàng Thị Thủy</Text>
+        <Text style={styles.name}>{user.fullName}</Text>
       </View>
       <View
         style={{
@@ -111,7 +114,7 @@ const Profile = () => {
       </View>
       <ScrollView style={{ marginHorizontal: 20 }} showsVerticalScrollIndicator={false}>
         {types.map((type) => {
-          return <Type key={type.id} />;
+          return <Type key={type.id} title=" " />;
         })}
       </ScrollView>
     </ScrollView>
